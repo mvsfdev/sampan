@@ -25,7 +25,7 @@ define(function(require, exports, module) {
                 expect(this.polygon.get("id")).to.be.null;
                 expect(this.polygon.get("title")).to.be.null;
                 expect(this.polygon.get("highlight")).to.be.null;
-                expect(this.polygon.get("svg_attrs")).to.be.null;
+                expect(this.polygon.get("svg_attrs")).to.be.ok;
                 expect(this.polygon.get("configure")).to.be.null;
                 expect(this.polygon.get("coords")).to.be.null;
                 expect(this.polygon.get("fill")).to.be.equal("blue");

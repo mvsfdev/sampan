@@ -15,8 +15,8 @@ define(function(require, exports, module) {
             this.set({
                 "coords": null,
                 "fill": "blue",
-                "fill-opacity" : 0.6
-                //"svg_attrs": Constants.field.normal
+                "fill-opacity" : 0.6,
+                "svg_attrs": Constants.polygon.normal
             });
             this.coords = new Coords();
         },
