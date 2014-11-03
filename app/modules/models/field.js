@@ -5,21 +5,19 @@ define(function(require, exports, module) {
     var _ = require("underscore");
     var Backbone = require("backbone");
     var app = require("app");
-
-    var Segment = Backbone.Model.extend({
+       
+    var Field = Backbone.Model.extend({
         defaults:{
             line: null,
-            segment_id: null,
+            field_id: null,
             owner: null,
             wing: null,
-            start_sub: null,
-            end_sub: null,
+            location: null,
             zone_id: null,
             state: null,
             status: null
             
         }
     });
-    module.exports = Segment;
-    
+    module.exports = Field;
 });

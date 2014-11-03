@@ -6,4 +6,12 @@ define(function(require, exports, module) {
   var Backbone = require("backbone");
   var app = require("app");
 
+
+    var Coord = Backbone.Model.extend({
+	defaults: {
+            x: null,
+            y: null
+	}
+    });
+    module.exports = Coord;
 });
