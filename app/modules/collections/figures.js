@@ -7,9 +7,11 @@ define(function(require, exports, module) {
     var app = require("app");
     var Figure = require("modules/models/figure");
     
-    var Figures = Backbone.Collection.extend({
-        model: Figure
-    });
     
+    var Figures = Backbone.Collection.extend({
+	model: Figure
+    });
+
     module.exports = Figures;
+    
 });

@@ -47,8 +47,8 @@ define(function(require, exports, module) {
                   expect(this.coords).to.have.length(1);
                   coord = coords.at(0);
                   expect(coord).to.be.ok;
-                  expect(coord.get('x')).to.be.equal(30);
-                  expect(coord.get('y')).to.be.equal(90);
+                  expect(coord.get('x')).to.be.ok;
+                  expect(coord.get('y')).to.be.ok
                   done();
                   
               });
@@ -85,37 +85,7 @@ define(function(require, exports, module) {
               });
               expect(coords).to.have.length(1);
           });
-
-
           
       });
-      
-
-
-
-
-
-
-
-      // describe("modification", function() {
-      //     it("modify default values", function() {
-      //         this.coords.add([
-      //             { x: 50, y: 50},
-      //             { x: 50, y: 90}
-      //         ]);
-      //         expect(this.coords).to.have.length(2);
-      //     });
-      //     it("can add some coords", function() {
-      //         this.coords.add([
-      //             { x: 20, y: 20},
-      //             { x: 30, y: 70}
-      //         ]);
-      //         expect(this.coords).to.have.length(4);
-      //     });
-      //     it("can delete a coord", function() {
-      //         this.coords.remove(this.coords.models[1]);
-      //         expect(this.coords).to.have.length(3);
-      //     });
-      // });
   });
 });

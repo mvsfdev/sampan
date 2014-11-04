@@ -9,144 +9,84 @@ define(function(require, exports, module) {
         it("should exist", function() {
             expect(Module).to.exist;
         });
-        before(function(){
-        this.figures = new Module();
-        });
-
-        after(function(){
-        this.figures = null;
-        });
-        // describe("creation", function() {
-        //     it("should has default values", function() {
-        //         expect(this.figures).to.have.length(0);
-        //         expect(this.figures.model).to.be.equal(Figure);
-        //     });
-        // });
-        // describe("modification", function() {
-        //     it("modify default values", function() {
-        //         this.figures.add([
-        //             { name: 'seg_01' },
-        //             { name: 'seg_02' }
-        //         ]);
-        //         expect(this.figures).to.have.length(2);
-        //     });
-
-        //     it("can add a figure", function() {
-        //         this.figures.add([
-        //             { name: 'seg_03'}
-        //         ]);
-        //         expect(this.figures).to.have.length(3);
-        //     });
-        //     it("can delete a figure", function() {
-        //         this.figures.remove(this.figures.models[1]);
-        //         expect(this.figures).to.have.length(2);
-        //     });
-        // });
         
-  
-
-
-        describe("creation", function () {
-            
-            it("has default values", function () {
-                expect(this.figures).to.be.ok;
-                expect(this.figures).to.have.length(0);
+        before(function() {
+            this.modules = new Module();
+        });
+        
+        after(function() {
+            this.modules = null;
+        });
+        
+        describe("creation",function() {
+            it("should has default values",function() {
+                expect(this.modules).to.have.length(0);
+                expect(this.modules).to.have.property('model',Figure);
+                expect(this.modules.model).to.be.equal(Figure);
             });
-            
-            it.skip("should be empty on fetch", function (done) {
-                var figures = this.figures;
+            it("should be empty on fetch", function() {
+                var modules = this.modules;
+                expect(modules).to.be.ok;
+                expect(this.modules).to.have.length(0);
                 
-                // Before fetch.
-                expect(figures).to.be.ok;
-                expect(figures).to.have.length(0 );
-                
-                // After fetch.
-                figures.once("reset", function () {
-                    expect(figures).to.have.length(0);
-                    done();
+                modules.once('reset',function() {
+                    expect(this.modules).to.have.length(0);
                 });
-                
-                //figures.fetch({ reset: true });
+                //modules.fetch({ reset: true});
             });
         });
-
-        describe("modification", function () {
-            
-            it("can add a figure", function() {
-                this.figures.add([
-                    { name: 'seg_03'}
-                ]);
-                expect(this.figures).to.have.length(1);
-            });
-            // beforeEach(function() {
-            //     this.figures.create({
-            //         name: 'seg_11',
-            //         title: '南'
-            //     });
-            // });
-
-            // afterEach(function() {
-            //     //this.figures.localStorage._clear();
-            //     //this.figures.reset();
-            // });
-
-            it.skip("has a single figure", function (done) {
-                var figures = this.figures , figure;
-                figures.once("reset", function() {
-                   
-                    expect(figures).to.have.length(0);
-               
-                    figure = figures.at(0);
-                    expect(figure).to.be.ok;
-                    expect(figure.get('name')).to.contain("seg");
-                    expect(figure.get('title')).to.contain("south");
-
-                    done();
-                });
-                expect(this.figures).to.have.length(1);
-                //figures.fetch({reset: true});
-            });
-
-            it("can delete a figure", function (done) {
-                var figures = this.figures, figure;
-                
-                
-                // After shift.
-                figures.once("remove", function () {
-                    expect(figures).to.have.length(0);
-                    done();
-                });
-                
-                // Remove and return first model.
-                //figures.remove(figures.models[0]);
-                figure = figures.shift();
-                expect(figure).to.be.ok;
-                expect(figures).to.have.length(0);
+        
+        describe("modification", function() {
+            it('has a module', function() {
+                this.modules.add([{position: {x: 30,y: 90}, id: "fig_1"}]);
+                var module = this.modules.at(0);
+                expect(this.modules).to.have.length(1);
+                expect(module.get('position').x).to.be.ok;
+                expect(module.get('position').y).to.be.ok;
+                expect(module.get('position')).to.be.ok;
             });
             
-            it.skip("create a second figure", function (done) {
-                var figures = this.figures , figure;
-                this.figures.add([
-                    { name: 'seg_04', title: 'north'}
-                ]);
-                expect(figures).to.have.length(1);
-                
-                figures.once("reset", function() {
-                    expect(figures).to.have.length(1);
-               
-                    figure = figures.at(1);
-                    expect(figure).to.be.ok;
-                    expect(figure.get('name')).to.contain("seg");
-                    expect(figure.get('title')).to.contain("north");
+            it.skip('has a single module', function(done) {
+                var modules = this.modules, module;
+                modules.once('reset', function() {
+                    expect(this.modules).to.have.length(1);
+                    module = modules.at(0);
+                    expect(module).to.be.ok;
+                    expect(module.get('position')).to.be.ok;
+                    done();
                     
+                });
+                //zones.fetch({reset: true});
+            });
+
+            it('can delete a module', function (done) {
+                var modules = this.modules, module;
+                
+                modules.once('remove', function() {
+                    expect(modules).to.have.length(0);
                     done();
                 });
-                expect(this.figures).to.have.length(1);
-                //figures.fetch({reset: true});
+                
+                module = modules.shift();
+                expect(module).to.be.ok;
             });
             
+            it('can create second module', function() {
+                var modules = this.modules, module;
+                
+                modules.once("add",function () {
+                    expect(modules).to.have.length(1);
+                    
+                    module = modules.at(0);
+                    expect(module).to.be.ok;
+                    expect(module.get("position").x).to.be.ok;
+                    expect(module.get("position").y).to.be.ok;
+                    //done();
+                 });
+                modules.add([{position: {x: 90,y: 20}, id: "fig_2"}]);
+                expect(modules).to.have.length(1);
+            });
             
         });
-        
     });
 });
