@@ -24,7 +24,8 @@ define(function(require, exports, module) {
                 "stroke_width": 20
             },
             "normal":{
-                "stroke_width": 10
+                "stroke_width": 10,
+                "stroke": "green"
             },
             "accessed": {
                 "stroke": "yellow"

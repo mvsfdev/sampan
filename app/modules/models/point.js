@@ -12,10 +12,12 @@ define(function(require, exports, module) {
         initialize: function(options) {
             this.constructor.__super__.initialize.apply(this, [options]);
             this.set({
+                "position": {x: 20, y: 90},
                 "r": Constants.point.radius
+
             });
         }
     });
     module.exports = Point;
-
 });
+

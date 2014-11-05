@@ -5,14 +5,10 @@ define(function(require, exports, module) {
     var _ = require("underscore");
     var Backbone = require("backbone");
     var app = require("app");
-    var Coord = require("modules/models/coord");
-    
-    
-    var Coords = Backbone.Collection.extend({
-	model: Coord
+    var Icon = require("modules/models/icon");
+    var Icons = Backbone.Collection.extend({
+	model: Icon
     });
-    //return Coords;
-    module.exports = Coords;
-    
-});
 
+    module.exports = Icons;
+});

@@ -5,14 +5,13 @@ define(function(require, exports, module) {
     var _ = require("underscore");
     var Backbone = require("backbone");
     var app = require("app");
-    var Coord = require("modules/models/coord");
+    var Point = require("modules/models/point");
     
     
-    var Coords = Backbone.Collection.extend({
-	model: Coord
+    var Points = Backbone.Collection.extend({
+	model: Point
     });
-    //return Coords;
-    module.exports = Coords;
+    
+    module.exports = Points;
     
 });
-
