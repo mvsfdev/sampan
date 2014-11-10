@@ -18,15 +18,16 @@ define(function(require, exports, module) {
         });
         describe("creation", function() {
             it("should has default values", function() {
-                expect(this.point.get("position")).to.be.null;
+                expect(this.point.get("position")).to.be.ok;
                 expect(this.point.get("scale_x")).to.be.null;
                 expect(this.point.get("scale_y")).to.be.null;
-                expect(this.point.get("id")).to.be.null;
-                expect(this.point.get("title")).to.be.null;
+                expect(this.point.get("id")).to.be.ok;
+                expect(this.point.get("title")).to.be.ok;
                 expect(this.point.get("highlight")).to.be.null;
-                expect(this.point.get("svg_attrs")).to.be.null;
                 expect(this.point.get("configure")).to.be.null
                 expect(this.point.get("r")).to.be.equal(5)
+
+                expect(this.point.get("svg_attrs")).to.be.equal(Constants.point.current_alarm);
             });
         });
         

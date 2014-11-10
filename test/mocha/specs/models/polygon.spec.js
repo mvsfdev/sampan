@@ -22,24 +22,22 @@ define(function(require, exports, module) {
                 expect(this.polygon.get("position")).to.be.null;
                 expect(this.polygon.get("scale_x")).to.be.null;
                 expect(this.polygon.get("scale_y")).to.be.null;
-                expect(this.polygon.get("id")).to.be.null;
-                expect(this.polygon.get("title")).to.be.null;
+                expect(this.polygon.get("id")).to.be.ok;
+                expect(this.polygon.get("title")).to.be.ok;
                 expect(this.polygon.get("highlight")).to.be.null;
                 expect(this.polygon.get("svg_attrs")).to.be.ok;
                 expect(this.polygon.get("configure")).to.be.null;
                 expect(this.polygon.get("coords")).to.be.null;
-                expect(this.polygon.get("fill")).to.be.equal("blue");
-                expect(this.polygon.get("fill-opacity")).to.be.equal(0.6);
-
+                expect(this.polygon.get("fill-opacity")).to.be.equal(Constants.highlight.fill_opacity);
+                expect(this.polygon.get("svg_attrs")).to.be.equal(Constants.polygon.failed);
+                expect(this.polygon.intNum).to.be.equal(1);
+                
             });
         });
         
         describe("function", function() {
             it("should has function - toPath", function() {
                 expect(this.polygon.toPath).to.be.ok;
-            });
-            it("should has function - selected", function() {
-                expect(this.polygon.selected).to.be.ok;
             });
             it("should has function - setSVG_attrs", function() {
                 expect(this.polygon.setSVG_attrs).to.be.ok;

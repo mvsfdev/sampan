@@ -20,8 +20,8 @@ define(function(require, exports, module) {
                 expect(this.figure.get("position")).to.be.null;
                 expect(this.figure.get("scale_x")).to.be.null;
                 expect(this.figure.get("scale_y")).to.be.null;
-                expect(this.figure.get("id")).to.be.null;
-                expect(this.figure.get("title")).to.be.null;
+                expect(this.figure.get("id")).to.be.ok;
+                expect(this.figure.get("title")).to.be.ok;
                 expect(this.figure.get("highlight")).to.be.null;
                 expect(this.figure.get("svg_attrs")).to.be.null;
                 expect(this.figure.get("configure")).to.be.null

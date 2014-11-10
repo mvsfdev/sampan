@@ -12,14 +12,29 @@ define(function(require, exports, module) {
     var Polyline = Figure.extend({
         initialize: function(options) {
             this.constructor.__super__.initialize.apply(this, [options]);
+            this.coords = new Coords();
             this.set({
                 svg_attrs: Constants.polyline.normal,
-                "coords": null
+                "coords": this.coords,
+                "state": null
             });
-            this.coords = new Coords();
+            this.listenTo(this, "change:state", this.setSVG_attrs, this);
+            this.listenTo(this, "change:coords", this.toPath, this);
+
+            // for test
+            this.intNum = 0;
+            this.set({
+                "state": "accessed"
+            });
+            this.set({
+                "state": "fail"
+            });
+            // end
+            
         },
         
         toPath: function(){
+            this.intNum_coords++;
             var path = "";
             //var coordsAry = this.get('coords').toArray();
             var coordsAry = [{"x": 10, "y": 10}, {"x": 20, "y": 20}];
@@ -34,19 +49,12 @@ define(function(require, exports, module) {
             return path;
         },
         
-        
-        
-        selected: function() {
-            this.set("svg_attrs", Constants.polyline.selected);
-        },
-        
-        
         setSVG_attrs: function(state) {
-            switch (state) {
+            switch (this.get("state")) {
             case 'accessed':
                 this.set("svg_attrs", Constants.polyline.accessed);
                 break;
-
+                
             case 'secured':
                 this.set("svg_attrs", Constants.polyline.secured);
                 break;
@@ -58,9 +66,10 @@ define(function(require, exports, module) {
             case 'disable':
                 this.set("svg_attrs", Constants.polyline.disabled);
                 break;
-
-                
             }            
+           
+            this.intNum++;
+           return true;
         }
         
         

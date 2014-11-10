@@ -14,11 +14,17 @@ define(function(require, exports, module) {
             this.constructor.__super__.initialize.apply(this, [options]);
             this.set({
                 "coords": null,
-                "fill": "blue",
-                "fill-opacity" : 0.6,
                 "svg_attrs": Constants.polygon.normal
             });
             this.coords = new Coords();
+            this.listenTo(this,"change:state",this.setSVG_attrs,this);
+
+            // for test
+            this.intNum = 0;
+            this.set({
+                "state": "failed"
+            });
+            // end
         },
         
         toPath: function() {
@@ -37,15 +43,9 @@ define(function(require, exports, module) {
             return path;
         },
         
-        selected: function() {
-            this.set(
-                "svg_attrs", Constants.polygon.selected
-            );
-        },
-        
         setSVG_attrs: function(state) {
-
-            switch (state) {
+            this.intNum++;
+            switch (this.get("state")) {
             case 'accessed':
                 this.set("svg_attrs", Constants.polygon.accessed);
                 break;
@@ -54,7 +54,7 @@ define(function(require, exports, module) {
                 this.set("svg_attrs", Constants.polygon.secured);
                 break;
                 
-            case 'fail' :
+            case 'failed' :
                 this.set("svg_attrs", Constants.polygon.failed);
                 break;
                 

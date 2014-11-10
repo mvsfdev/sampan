@@ -12,13 +12,13 @@ define(function(require, exports, module) {
         it("should exist", function() {
             expect(Module).to.exist;
         });
-        before(function (){
-            this.view = new Module();
-        });
+        // before(function (){
+        //     this.view = new Module();
+        // });
 
-        after(function() {
-            this.view = null;
-        });
+        // after(function() {
+        //     this.view = null;
+        // });
 
         // describe("'view' by default", function() {
         //     it("is remove point model", sinon.test(function() {

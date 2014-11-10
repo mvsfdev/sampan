@@ -13,10 +13,38 @@ define(function(require, exports, module) {
             this.constructor.__super__.initialize.apply(this, [options]);
             this.set({
                 "position": {x: 20, y: 90},
-                "r": Constants.point.radius
-
+                "r": Constants.point.radius,
+                "state": " "
             });
-        }
+            this.listenTo(this, "change:state", this.setSVG_attrs, this);
+
+            // for test
+            this.set({
+                "state": "current"
+            });
+            // end
+
+        },
+
+        // setSVG_attrs: function(model) {
+        //     if (model.get("state")){
+        //         this.model.set({
+        //             "svg_attrs": Constants.point.current_alarm
+        //         });
+        //     }
+        // },
+
+        setSVG_attrs: function(model) {
+            if (this.get("state") == "current"){
+                this.set({
+                    "svg_attrs": Constants.point.current_alarm
+                });
+            }else{this.set({
+                "svg_attrs": Constants.point.previous_alarm
+            });
+                 }
+        }        
+        
     });
     module.exports = Point;
 });

@@ -7,12 +7,16 @@ define(function(require, exports, module) {
     var app = require("app");
     
     var Constants = {
+        highlight: {
+            "color": "#FFE303",
+            "width": 50
+        },
         point: {
-            "current-alarm": {
+            "current_alarm": {
                 "stroke": "yellow",
                 "fill": "red"
             },
-            "previous-alarm":{
+            "previous_alarm":{
                 "stroke": "red",
                 "fill": "red"
             },
@@ -42,6 +46,11 @@ define(function(require, exports, module) {
         },
         
         polygon: {
+            "base":{
+                "fill_opacity": 0.6,
+                "stroke_width": 5
+            },
+            
             "selected":{
 
             },
@@ -69,11 +78,9 @@ define(function(require, exports, module) {
         icon: {
             "selected":{
                 "stroke": "yellow"
-
             },
             "normal":{
                 "stroke": "yellow"
-
             },
             "accessed": {
                 "stroke": "yellow"

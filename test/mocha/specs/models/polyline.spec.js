@@ -22,19 +22,21 @@ define(function(require, exports, module) {
                 expect(this.polyline.get("position")).to.be.null;
                 expect(this.polyline.get("scale_x")).to.be.null;
                 expect(this.polyline.get("scale_y")).to.be.null;
-                expect(this.polyline.get("id")).to.be.null;
-                expect(this.polyline.get("title")).to.be.null;
+                expect(this.polyline.get("id")).to.be.ok;
+                expect(this.polyline.get("title")).to.be.ok;
                 expect(this.polyline.get("highlight")).to.be.null;
-                expect(this.polyline.get("svg_attrs")).to.be.equal(Constants.polyline.normal);
-                expect(this.polyline.get("coords")).to.be.null;
+                expect(this.polyline.get("svg_attrs")).to.be.ok;
+                expect(this.polyline.get("coords")).to.be.ok;
+                expect(this.polyline.intNum).to.be.equal(2);
+                expect(this.polyline.get("state")).to.be.equal('fail');
+                //this.polyline.setSVG_attrs(this.polyline.get("state"));
+                expect(this.polyline.get("svg_attrs")).to.be.equal(Constants.polyline.failed);
+
             });
         });
         describe("function", function() {
             it("should has function - toPath", function() {
                 expect(this.polyline.toPath).to.be.ok;
-            });
-            it("should has function - selected", function() {
-                expect(this.polyline.selected).to.be.ok;
             });
             it("should has function - setSVG_attrs", function() {
                 expect(this.polyline.setSVG_attrs).to.be.ok;

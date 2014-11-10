@@ -13,8 +13,8 @@ define(function(require, exports, module) {
             position: null,
             scale_x: null,
             scale_y: null,
-            id: null,
-            title: null,
+            id: " ",
+            title: " ",
             highlight: null,
             svg_attrs: null,
             configure: null

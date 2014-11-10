@@ -43,7 +43,7 @@ define(function(require, exports, module) {
                 var module = this.modules.at(0);
                 expect(this.modules).to.have.length(1);
                 expect(module.get('background')).to.be.ok;
-                expect(module.get('foreground')).to.be.null;
+                expect(module.get('foreground')).to.be.ok;
                 expect(module.get('svg_attrs')).to.be.ok;
             });
             
