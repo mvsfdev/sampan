@@ -9,11 +9,11 @@ define(function(require, exports, module) {
             expect(Module).to.exist;
         });
 
-        it("should define some constants - icon", function() {
-            expect(Module.icon.accessed.stroke).to.be.equal("yellow");
-            expect(Module.icon.secured.stroke).to.be.equal("green");
-            expect(Module.icon.failed.stroke).to.be.equal("red");
-            expect(Module.icon.disabled.stroke).to.be.equal("gray");
+        it("should define some constants - point", function() {
+            expect(Module.point.current_alarm.stroke).to.be.equal("yellow");
+            expect(Module.point.current_alarm.fill).to.be.equal("red");
+            expect(Module.point.previous_alarm.stroke).to.be.equal("red");
+            expect(Module.point.previous_alarm.fill).to.be.equal("red");
         });
 
         it("should define some constants - polyline", function() {
@@ -35,6 +35,13 @@ define(function(require, exports, module) {
             expect(Module.polygon.disabled.stroke).to.be.equal("gray");
             expect(Module.polygon.disabled.fill).to.be.equal("gray");
             
+        });
+
+        it("should define some constants - icon", function() {
+            expect(Module.icon.accessed.stroke).to.be.equal("yellow");
+            expect(Module.icon.secured.stroke).to.be.equal("green");
+            expect(Module.icon.failed.stroke).to.be.equal("red");
+            expect(Module.icon.disabled.stroke).to.be.equal("gray");
         });
     });
     

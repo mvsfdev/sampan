@@ -12,16 +12,19 @@ define(function(require, exports, module) {
         initialize: function(options) {
             this.shape = options.canvas.paper.path();
             this.el = this.shape;
-            this.render_shape();
-            this.render_attrs();
-            this.listenTo(this.model, "change:svg_attrs", this.render_attrs(), this);
-            this.listenTo(this.model, "change:highlight", this.changeHighlight(), this);
+            this.render();
+            this.listenTo(this.model, "change:svg_attrs", this.render, this);
+            this.listenTo(this.model, "change:highlight", this.changeHighlight, this);
         },
-        
-        render_shape: function() {
+
+        render: function () {
             this.shape.attr({
-                "path": this.model.toPath(),
-                "title": this.model.get("title")
+                "path": this.model.get("path"),
+                "title": this.model.get("title"),
+
+                "stroke": this.model.get("svg_attrs").stroke,
+                "stroke-width": Constants.polygon.base.stroke_width,
+                "fill-opacity": Constants.polygon.base.fill_opacity
             });
 
             this.glow = this.shape.glow({
@@ -30,13 +33,6 @@ define(function(require, exports, module) {
             });
         },
 
-        render_attrs: function () {
-            this.shape.attr({
-                "stroke": this.model.get("svg_attrs").stroke,
-                "stroke-width": Constants.polygon.base.stroke_width,
-                "fill-opacity": Constants.polygon.base.fill_opacity
-            });
-        },
 
         changeHighlight: function(model) {
             if (model.get("highlight")){

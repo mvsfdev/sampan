@@ -9,7 +9,14 @@ define(function(require, exports, module) {
     
     
     var Figures = Backbone.Collection.extend({
-	model: Figure
+	model: Figure,
+
+        click_mod: function() {
+            return false;
+            
+        }
+
+
     });
 
     module.exports = Figures;

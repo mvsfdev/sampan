@@ -140,11 +140,12 @@ module.exports = function(grunt) {
         browsers: ["PhantomJS"],
 
         // Change this to the framework you want to use.
-        frameworks: ["mocha"],
+          frameworks: ["mocha","sinon-chai"],
 
         plugins: [
           "karma-jasmine",
           "karma-mocha",
+          "karma-sinon-chai",
           "karma-qunit",
           "karma-phantomjs-launcher",
           "karma-coverage"
@@ -161,7 +162,8 @@ module.exports = function(grunt) {
 
         files: [
           // You can optionally remove this or swap out for a different expect.
-          "vendor/bower/chai/chai.js",
+          //"vendor/bower/chai/chai.js",
+          "vendor/bower/sinon-chai/lib/sinon-chai.js",
           "vendor/bower/requirejs/require.js",
           "test/runner.js",
 

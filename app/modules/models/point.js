@@ -14,26 +14,15 @@ define(function(require, exports, module) {
             this.set({
                 "position": {x: 20, y: 90},
                 "r": Constants.point.radius,
-                "state": " "
-            });
-            this.listenTo(this, "change:state", this.setSVG_attrs, this);
-
-            // for test
-            this.set({
                 "state": "current"
             });
-            // end
-
         },
 
-        // setSVG_attrs: function(model) {
-        //     if (model.get("state")){
-        //         this.model.set({
-        //             "svg_attrs": Constants.point.current_alarm
-        //         });
-        //     }
-        // },
-
+        set_state: function() {
+            this.set("state", "previous");
+            this.setSVG_attrs();
+        },
+        
         setSVG_attrs: function(model) {
             if (this.get("state") == "current"){
                 this.set({

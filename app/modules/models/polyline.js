@@ -16,27 +16,16 @@ define(function(require, exports, module) {
             this.set({
                 svg_attrs: Constants.polyline.normal,
                 "coords": this.coords,
-                "state": null
+                "state": " "
             });
-            this.listenTo(this, "change:state", this.setSVG_attrs, this);
-            this.listenTo(this, "change:coords", this.toPath, this);
 
-            // for test
-            this.intNum = 0;
-            this.set({
-                "state": "accessed"
-            });
-            this.set({
-                "state": "fail"
-            });
-            // end
-            
+            this.setSVG_attrs();
+            //this.toPath();
+
         },
         
         toPath: function(){
-            this.intNum_coords++;
             var path = "";
-            //var coordsAry = this.get('coords').toArray();
             var coordsAry = [{"x": 10, "y": 10}, {"x": 20, "y": 20}];
             if (coordsAry.length > 0) {
                 path += "M" + coordsAry[0].get("x") * this.get("scale_x") + "," + 
@@ -46,9 +35,20 @@ define(function(require, exports, module) {
                         coordsAry[i].get("y") * this.get("scale_y")+ " ";
                 }
             }
-            return path;
+            this.set("path", path);
         },
         
+        // event trigger this
+        set_state: function() {
+            this.set("state", "accessed");
+            this.setSVG_attrs();
+        },
+
+        // // event trigger this
+        // set_highlight: function() {
+        //     this.set("highlight", true);
+        // },
+
         setSVG_attrs: function(state) {
             switch (this.get("state")) {
             case 'accessed':
@@ -67,9 +67,9 @@ define(function(require, exports, module) {
                 this.set("svg_attrs", Constants.polyline.disabled);
                 break;
             }            
-           
+            
             this.intNum++;
-           return true;
+            return true;
         }
         
         

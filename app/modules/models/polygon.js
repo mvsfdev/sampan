@@ -17,16 +17,11 @@ define(function(require, exports, module) {
                 "svg_attrs": Constants.polygon.normal
             });
             this.coords = new Coords();
-            this.listenTo(this,"change:state",this.setSVG_attrs,this);
-
-            // for test
-            this.intNum = 0;
-            this.set({
-                "state": "failed"
-            });
-            // end
+            this.setSVG_attrs();
+            //this.toPath();
         },
         
+        //event trigger this
         toPath: function() {
             var path = "";
             //var coordsAry = this.get('coords').toArray();
@@ -40,11 +35,21 @@ define(function(require, exports, module) {
                 }
                 path += "Z";
             }
-            return path;
+            this.set("path", path);
+        },
+
+        //event trigger this
+        set_state: function() {
+            this.set("state","accessed");
+            this.setSVG_attrs();
         },
         
+        // // event trigger this
+        // set_highlight: function() {
+        //     this.set("highlight", true);
+        // },
+
         setSVG_attrs: function(state) {
-            this.intNum++;
             switch (this.get("state")) {
             case 'accessed':
                 this.set("svg_attrs", Constants.polygon.accessed);

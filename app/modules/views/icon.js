@@ -11,38 +11,30 @@ define(function(require, exports, module) {
     var IconView = FigureView.extend({
         initialize: function(options) {
             this.shape = options.canvas.paper.path();
+            this.shape.attr({
+
+            });
             this.el = this.shape;
+            this.render();
 
-            this.renderBackground();
-            this.renderForeground();
-            this.render_attrs();
-
-            this.listenTo(this.model, "change:svg_attrs", this.renderBackground, this);
+            this.listenTo(this.model, "change:svg_attrs", this.render, this);
             this.listenTo(this.model, "change:highlight", this.changeHighlight(), this);
         },
-        
-        renderForeground: function() {
-            this.shape.attr({
-                "path": this.model.get("foreground")
-            });
-        },
 
-        renderBackground: function() {
-            this.shape.attr({
-                "path": this.model.get("Background"),
-                "title": this.model.get("title")
-            });
+        render: function() {
+            var path = this.model.get("background");
+                path += this.model.get("foreground");
 
+            this.shape.attr({
+                "path": path,
+                "title": this.model.get("title"),
+                "stroke": this.model.get("svg_attrs").stroke,
+                "stroke-width": Constants.polygon.base.stroke_width
+            });
+            
             this.glow = this.shape.glow({
                 "color": Constants.highlight.color,
                 "width": Constants.highlight.width
-            });
-        },
-
-        render_attrs: function() {
-            this.shape.attr({
-                "stroke": this.model.get("svg_attrs").stroke,
-                "stroke-width": Constants.polygon.base.stroke_width
             });
         },
 

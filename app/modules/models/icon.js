@@ -14,19 +14,11 @@ define(function(require, exports, module) {
             this.set({
                 "background": Constants.icon.BOX,
                 "svg_attrs": Constants.icon.normal,
-                "state": null,
+                "state": " ",
                 "mod_type": " "
             });
             this.setIconType();
-            this.listenTo(this,"change:state",this.setSVG_attrs,this);
-
-
-            // for test
-            this.intNum = 0;
-            this.set({
-                "state": "failed"
-            });
-            // end
+            this.setSVG_attrs();
         },
 
         setIconType: function(mod_type) {
@@ -48,8 +40,12 @@ define(function(require, exports, module) {
             this.set("foreground", icon);
         },
 
+        set_state: function() {
+            this.set("state", "accessed");
+            this.setSVG_attrs();
+        },
+
         setSVG_attrs: function(state) {
-            this.intNum++;
             switch (this.get("state")) {
             case 'accessed':
                 this.set("svg_attrs", Constants.icon.accessed);
@@ -69,5 +65,7 @@ define(function(require, exports, module) {
             }            
         }
     });
+
     module.exports = Icon;
+
 });

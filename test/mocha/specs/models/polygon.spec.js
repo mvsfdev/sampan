@@ -29,8 +29,7 @@ define(function(require, exports, module) {
                 expect(this.polygon.get("configure")).to.be.null;
                 expect(this.polygon.get("coords")).to.be.null;
                 expect(this.polygon.get("fill-opacity")).to.be.equal(Constants.highlight.fill_opacity);
-                expect(this.polygon.get("svg_attrs")).to.be.equal(Constants.polygon.failed);
-                expect(this.polygon.intNum).to.be.equal(1);
+                expect(this.polygon.get("svg_attrs")).to.be.ok;
                 
             });
         });
