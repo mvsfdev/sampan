@@ -18,22 +18,37 @@ define(function(require, exports, module) {
             //this.el = this.shape;
             this.listenTo(this.model, "change:svg_attrs", this.render, this);
             this.listenTo(this.model, "destory", this.remove, this);
-            this.render(board);
-        },
-        
-        remove: function() {
-            this.view.remove();
-        },
-        
-        render: function(board) {
             var cx =  this.model.get("position").x,
                 cy =  this.model.get("position").y,
                 r =  this.model.get("r");
             this.shape = board.circle(cx,cy,r);
             this.el = this.shape.node;
             this.$el = $(this.shape.node);
+            this.render();
+        },
+        
+        remove: function() {
+            this.view.remove();
+        },
+        
+        updateShape: function() {
+            var cx =  this.model.get("position").x,
+                cy =  this.model.get("position").y,
+                r =  this.model.get("r");
             //this.shape.drag(this.dragstart, this.dragmove, this.dragup);
+            this.shape.attr({cx : cx,
+                             cy: cy,
+                             r : r});
+        },
+        
+        updateAttrs: function() {
             this.shape.attr(this.model.get("svg_attrs"));
+        },
+        
+
+        render: function() {
+            this.updateShape();
+            this.updateAttrs();
         }
     });
 

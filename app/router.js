@@ -17,6 +17,9 @@ define(function(require, exports, module) {
         index: function() {
             var board = new Raphael(0,0,1920,1080);
             this.view = new Point(board);
+            this.view.model.set_state();
+            this.view.model.set_state("current");
+            //this.view.render();
             console.log("Welcome to your / route.");
         }
     });
