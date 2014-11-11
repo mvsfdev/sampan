@@ -87,7 +87,7 @@ module.exports = function(grunt) {
 
       test: {
         options: {
-          forever: false,
+          forever: true,
           port: 8001
         }
       }

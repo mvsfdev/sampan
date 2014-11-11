@@ -12,15 +12,17 @@ define(function(require, exports, module) {
             "width": 50
         },
         point: {
-            "current_alarm": {
+            current_alarm: {
                 "stroke": "yellow",
+                "stroke-width": 5,
                 "fill": "red"
             },
-            "previous_alarm":{
+            previous_alarm : {
                 "stroke": "red",
-                "fill": "red"
-            },
-            "radius": 5
+                "stroke-width": 5,
+                "fill": "red" 
+            }, 
+            radius : 5
         },
 
         polyline: {

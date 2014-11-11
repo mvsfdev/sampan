@@ -1,17 +1,23 @@
 define(function(require, exports, module) {
-  "use strict";
+    "use strict";
+    
+    // External dependencies.
+    var Backbone = require("backbone");
+    var Point = require("modules/views/point");
+    var Raphael = require("raphael");
+    var Constants = require("modules/constants");
 
-  // External dependencies.
-  var Backbone = require("backbone");
 
-  // Defining the application router.
-  module.exports = Backbone.Router.extend({
-    routes: {
-      "": "index"
-    },
-
-    index: function() {
-      console.log("Welcome to your / route.");
-    }
-  });
+    // Defining the application router.
+    module.exports = Backbone.Router.extend({
+        routes: {
+            "": "index"
+        },
+        
+        index: function() {
+            var board = new Raphael(0,0,1920,1080);
+            this.view = new Point(board);
+            console.log("Welcome to your / route.");
+        }
+    });
 });
