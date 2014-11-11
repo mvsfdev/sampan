@@ -14,5 +14,8 @@
     "sinon-chai": "~2.6.0",
     "sinon": "~1.7.3"
   },
-  "version": "0.1.0"
+  "version": "0.1.0",
+  "devDependencies": {
+    "raphael": "~2.1.2"
+  }
 }
