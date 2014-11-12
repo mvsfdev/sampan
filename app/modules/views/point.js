@@ -10,10 +10,10 @@ define(function(require, exports, module) {
     var Point = require("modules/models/point");
 
     var PointView = FigureView.extend({
-        initialize: function(board) {
-            this.constructor.__super__.initialize.apply(this, [board]);
-            this.model = new Point();
-            this.shape = board.circle();
+        initialize: function(options) {
+            this.constructor.__super__.initialize.apply(this, [options]);
+            this.model = options.model;
+            this.shape = options.paper.circle();
             this.el = this.shape.node;
             this.$el = $(this.shape.node);
             this.render();

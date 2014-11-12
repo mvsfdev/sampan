@@ -23,6 +23,8 @@ define(function(require, exports, module) {
                 "stroke-width": 5,
                 "fill": "red" 
             }, 
+            x : 20,
+            y : 90,
             radius : 5
         },
 

@@ -1,7 +1,7 @@
 define(function(require, exports, module) {
     "use strict";
     
-    var Module = require("modules/views/point");
+    var PointView = require("modules/views/point");
     var Point = require("modules/models/point");
     var Raphael = require("raphael");
     var Constants = require("modules/constants");
@@ -10,11 +10,12 @@ define(function(require, exports, module) {
     // Test that the module exists.
     describe("views/point", function() {
         it("should exist", function() {
-            expect(Module).to.exist;
+            expect(PointView).to.exist;
         });
         before(function (){
-            var board = Raphael(0,0,1920,1080);
-            this.view = new Module(board);
+            var paper = Raphael(0,0,1920,1080);
+            var model = new Point();
+            this.view = new PointView({paper : paper, model : model});
             //console.log(this.view.el);
         });
 
