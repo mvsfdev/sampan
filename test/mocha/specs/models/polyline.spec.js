@@ -19,7 +19,7 @@ define(function(require, exports, module) {
         });
         describe("creation", function() {
             it("should has default values", function() {
-                expect(this.polyline.get("position")).to.be.null;
+                //expect(this.polyline.get("position")).to.be.null;
                 expect(this.polyline.get("scale_x")).to.be.null;
                 expect(this.polyline.get("scale_y")).to.be.null;
                 expect(this.polyline.get("id")).to.be.ok;
@@ -36,7 +36,7 @@ define(function(require, exports, module) {
                 expect(this.polyline.toPath).to.be.ok;
             });
             it("should has function - setSVG_attrs", function() {
-                expect(this.polyline.setSVG_attrs).to.be.ok;
+                expect(this.polyline.updateAttrs).to.be.ok;
             });
         });
 

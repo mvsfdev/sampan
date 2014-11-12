@@ -19,9 +19,8 @@ define(function(require, exports, module) {
                 "state": " "
             });
 
-            this.setSVG_attrs();
-            //this.toPath();
-
+            this.updateAttrs();
+            
         },
         
         toPath: function(){
@@ -39,17 +38,12 @@ define(function(require, exports, module) {
         },
         
         // event trigger this
-        set_state: function() {
+        setState: function() {
             this.set("state", "accessed");
-            this.setSVG_attrs();
+            this.updateAttrs();
         },
 
-        // // event trigger this
-        // set_highlight: function() {
-        //     this.set("highlight", true);
-        // },
-
-        setSVG_attrs: function(state) {
+        updateAttrs: function(state) {
             switch (this.get("state")) {
             case 'accessed':
                 this.set("svg_attrs", Constants.polyline.accessed);

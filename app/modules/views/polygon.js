@@ -9,13 +9,14 @@ define(function(require, exports, module) {
     var Constants = require("modules/constants");
 
     var PolygonView = FigureView.extend({
-        initialize: function(options) {
-            this.shape = options.canvas.paper.path();
-            this.el = this.shape;
-            this.render();
-            this.listenTo(this.model, "change:svg_attrs", this.render, this);
-            this.listenTo(this.model, "change:highlight", this.changeHighlight, this);
+        initialize: function() {
+            // this.shape = options.canvas.paper.path();
+            // this.el = this.shape;
+            // this.render();
+            // this.listenTo(this.model, "change:svg_attrs", this.render, this);
+            // this.listenTo(this.model, "change:highlight", this.changeHighlight, this);
         },
+
 
         render: function () {
             this.shape.attr({

@@ -8,47 +8,40 @@ define(function(require, exports, module) {
     var FigureView = require("modules/views/figure");
     var Constants = require("modules/constants");
     var Point = require("modules/models/point");
-    ///var Raphael = require("raphael");
 
     var PointView = FigureView.extend({
         initialize: function(board) {
             this.constructor.__super__.initialize.apply(this, [board]);
             this.model = new Point();
-            //this.shape = options.canvas.paper.circle();
-            //this.el = this.shape;
-            this.listenTo(this.model, "change:svg_attrs", this.render, this);
-            this.listenTo(this.model, "destory", this.remove, this);
-            var cx =  this.model.get("position").x,
-                cy =  this.model.get("position").y,
-                r =  this.model.get("r");
-            this.shape = board.circle(cx,cy,r);
+            this.shape = board.circle();
             this.el = this.shape.node;
             this.$el = $(this.shape.node);
             this.render();
+
+            this.listenTo(this.model, "change", this.render, this);
+            this.listenTo(this.model, "destory", this.removed, this);
         },
         
-        remove: function() {
+        removed: function() {
             this.view.remove();
         },
         
-        updateShape: function() {
-            var cx =  this.model.get("position").x,
-                cy =  this.model.get("position").y,
-                r =  this.model.get("r");
-            //this.shape.drag(this.dragstart, this.dragmove, this.dragup);
-            this.shape.attr({cx : cx,
-                             cy: cy,
-                             r : r});
+        renderShape: function() {
+            this.shape.attr({cx :  this.model.get("x"),
+                             cy :  this.model.get("y"),
+                             r :  this.model.get("r"),
+                             title: this.model.get("title")
+                            });
         },
         
-        updateAttrs: function() {
+        renderAttrs: function() {
             this.shape.attr(this.model.get("svg_attrs"));
         },
         
 
         render: function() {
-            this.updateShape();
-            this.updateAttrs();
+            this.renderShape();
+            this.renderAttrs();
         }
     });
 

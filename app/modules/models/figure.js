@@ -13,7 +13,7 @@ define(function(require, exports, module) {
             scale_x: null,
             scale_y: null,
             id: " ",
-            title: " ",
+            title: "alarm",
             highlight: null,
             svg_attrs: null,
             configure: null,

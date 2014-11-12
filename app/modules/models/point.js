@@ -12,29 +12,36 @@ define(function(require, exports, module) {
         initialize: function(options) {
             this.constructor.__super__.initialize.apply(this, [options]);
             this.set({
-                "position": {x: 20, y: 90},
+                "x": 20,
+                "y": 90,
                 "r": Constants.point.radius
             });
-            this.set_state("current");
+            this.setState("current");
         },
 
-        set_state: function(state) {
+        setState: function(state) {
             var st = state || "previous";
             this.set("state", st);
-            this.setSVG_attrs();
+            this.updateAttrs();
         },
         
-        setSVG_attrs: function() {
-            if (this.get("state") == "current"){
+        updateAttrs: function() {
+            var state = this.get("state");
+            switch(state){
+            case "current":
                 this.set({
                     "svg_attrs": Constants.point.current_alarm
                 });
-            }
-            else{
+                break;
+
+            case "previous": 
                 this.set({
                     "svg_attrs": Constants.point.previous_alarm
                 });
-            }        
+                break;
+
+            }
+            
         }
     });
 

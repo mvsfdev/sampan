@@ -14,8 +14,6 @@ define(function(require, exports, module) {
         });
         before(function (){
             var board = Raphael(0,0,1920,1080);
-            //this.point = new Point();
-
             this.view = new Module(board);
             //console.log(this.view.el);
         });
@@ -30,11 +28,6 @@ define(function(require, exports, module) {
                 expect(this.view.$el.attr("cy")).to.be.equal('90');
                 expect(this.view.$el.attr("r")).to.be.equal(Constants.point.radius.toString());
             });
-            // it("is remove point model", sinon.test(function() {
-            //     this.spy(this.view, "remove");
-            //     this.view.model.trigger("destory");
-            //     expect(this.view.remove).to.be.calledOnce;
-            // }));
         });
         
         

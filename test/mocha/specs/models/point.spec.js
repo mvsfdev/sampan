@@ -18,7 +18,6 @@ define(function(require, exports, module) {
         });
         describe("creation", function() {
             it("should has default values", function() {
-                expect(this.point.get("position")).to.be.ok;
                 expect(this.point.get("scale_x")).to.be.null;
                 expect(this.point.get("scale_y")).to.be.null;
                 expect(this.point.get("id")).to.be.ok;

@@ -7,11 +7,15 @@ define(function(require, exports, module) {
     var app = require("app");
     var FigureView = require("modules/views/figure");
     var Constants = require("modules/constants");
+    var Polyline = require("modules/models/polyline");
 
     var PolylineView = FigureView.extend({
-        initialize: function(attrs,options) {
-            this.shape = options.canvas.paper.path();
-            this.el = this.shape;
+        initialize: function(board) {
+            this.constructor.__super__.initialize.apply(this, [board]);
+            this.model = new Polyline();
+            this.shape = board.path();
+            this.el = this.shape.node;
+            this.$el= $(this.shape.node);
             this.render();
 
             this.listenTo(this.model, "change:svg_attrs", this.render, this);
@@ -21,7 +25,7 @@ define(function(require, exports, module) {
         
         render: function() {
             this.shape.attr({
-                "path": this.model.toPath(),
+                "path": this.model.get("path"),
                 "title": this.model.get("title"),
                 svg_attrs: this.model.get("svg_attrs")
             });

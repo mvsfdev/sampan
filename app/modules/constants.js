@@ -13,6 +13,7 @@ define(function(require, exports, module) {
         },
         point: {
             current_alarm: {
+
                 "stroke": "yellow",
                 "stroke-width": 5,
                 "fill": "red"
