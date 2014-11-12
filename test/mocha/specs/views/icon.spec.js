@@ -1,15 +1,20 @@
 define(function(require, exports, module) {
     "use strict";
 
-    var Module = require("modules/views/icon");
+    var IconView = require("modules/views/icon");
+    var Icon = require("modules/models/icon");
+    var Constants = require("modules/constants");
+    var Raphael = require("raphael");
 
     // Test that the module exists.
     describe("views/icon", function() {
         it("should exist", function() {
-            expect(Module).to.exist;
+            expect(IconView).to.exist;
         });
         before(function (){
-            this.view = new Module();
+            var paper = Raphael(0,0,1920,1080);
+            var model = new Icon();
+            this.view = new IconView({paper : paper, model : model});
         });
         
         after(function() {

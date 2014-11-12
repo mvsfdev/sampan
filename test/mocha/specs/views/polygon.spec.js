@@ -1,15 +1,20 @@
 define(function(require, exports, module) {
     "use strict";
 
-    var Module = require("modules/views/polygon");
+    var PolygonView = require("modules/views/polygon");
+    var Polygon = require("modules/models/polygon");
+    var Raphael = require("raphael");
+    var Constants = require("modules/constants");
 
     // Test that the module exists.
     describe("views/polygon", function() {
         it("should exist", function() {
-            expect(Module).to.exist;
+            expect(PolygonView).to.exist;
         });
         before(function (){
-            this.view = new Module();
+            var paper = Raphael(0,0,1920,1080);
+            var model = new Polygon();
+            this.view = new PolygonView({paper : paper, model : model});
         });
         
         after(function() {

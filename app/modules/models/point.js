@@ -32,8 +32,9 @@ define(function(require, exports, module) {
                 this.set("svg_attrs", Constants.point.current_alarm);
                 break;
             case "previous": 
-            default :
                 this.set("svg_attrs",Constants.point.previous_alarm);
+                break;
+                default :
                 break;
             }
             

@@ -15,15 +15,16 @@ define(function(require, exports, module) {
                 "background": Constants.icon.BOX,
                 "svg_attrs": Constants.icon.normal,
                 "state": " ",
-                "mod_type": " "
+                "mod_type": "PM",
+                "title": "icon"
             });
-            this.setIconType();
-            this.setSVG_attrs();
+            this.setIconType(this.get("mod_type"));
+            this.setState();
         },
 
-        setIconType: function(mod_type) {
+        setIconType: function(type) {
             var icon = " ";
-            switch(mod_type) {
+            switch(type) {
             case "PM":
                 icon = Constants.icon.PM;
                 break;
@@ -36,17 +37,21 @@ define(function(require, exports, module) {
             case "TU":
                 icon = Constants.icon.TU;
                 break;
+                default:
+                break;
             }
             this.set("foreground", icon);
         },
 
-        set_state: function() {
-            this.set("state", "accessed");
-            this.setSVG_attrs();
+        setState: function(state) {
+            var st = state || "secured";
+            this.set("state", st);
+            this.updateAttrs();
         },
 
-        setSVG_attrs: function(state) {
-            switch (this.get("state")) {
+        updateAttrs: function() {
+            var state = this.get("state");
+            switch (state) {
             case 'accessed':
                 this.set("svg_attrs", Constants.icon.accessed);
                 break;
@@ -62,8 +67,12 @@ define(function(require, exports, module) {
             case 'disable':
                 this.set("svg_attrs", Constants.icon.disabled);
                 break;
+                default:
+                break;
+
             }            
         }
+
     });
 
     module.exports = Icon;

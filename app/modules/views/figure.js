@@ -9,9 +9,15 @@ define(function(require, exports, module) {
     var FigureView = Backbone.View.extend({
         initialize: function(options) {
         },
+
         events: {
-            
+            "click": "setHighlight"
         },
+
+        setHighlight: function() {
+            this.model.setHighlights();
+        },
+
         
         dragstart: function(){
         },

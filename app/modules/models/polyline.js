@@ -8,7 +8,7 @@ define(function(require, exports, module) {
     var Figure = require("modules/models/figure");
     var Constants = require("modules/constants");
     var Coords = require("modules/collections/coords");
-    
+
     var Polyline = Figure.extend({
         initialize: function(options) {
             this.constructor.__super__.initialize.apply(this, [options]);
@@ -16,30 +16,32 @@ define(function(require, exports, module) {
             this.set({
                 svg_attrs: Constants.polyline.normal,
                 "coords": this.coords,
-                "state": " "
+                "state": " ",
+                "path": " ",
+                "title": "polyline"
             });
-
-            this.updateAttrs();
-            
+            this.toPath();
+            //this.setState();
         },
         
         toPath: function(){
             var path = "";
-            var coordsAry = [{"x": 10, "y": 10}, {"x": 20, "y": 20}];
+            var coordsAry = [{"x": 10, "y": 10}, {"x": 200, "y": 20},{"x": 90,"y": 190}];
             if (coordsAry.length > 0) {
-                path += "M" + coordsAry[0].get("x") * this.get("scale_x") + "," + 
-                    coordsAry[0].get("y") * this.get("scale_y") + " ";
+                path += "M" + coordsAry[0].x * this.get("scale_x") + "," + 
+                    coordsAry[0].y * this.get("scale_y") + " ";
                 for ( var i = 1; i < coordsAry.length; i++){
-                    path += "L" + coordsAry[i].get("x") * this.get("scale_x") + "," + 
-                        coordsAry[i].get("y") * this.get("scale_y")+ " ";
+                    path += "L" + coordsAry[i].x * this.get("scale_x") + "," + 
+                        coordsAry[i].y * this.get("scale_y")+ " ";
                 }
             }
             this.set("path", path);
         },
         
         // event trigger this
-        setState: function() {
-            this.set("state", "accessed");
+        setState: function(state) {
+            var st = state || "secured";
+            this.set("state", st);
             this.updateAttrs();
         },
 
@@ -53,11 +55,11 @@ define(function(require, exports, module) {
                 this.set("svg_attrs", Constants.polyline.secured);
                 break;
                 
-            case 'fail' :
+            case 'failed' :
                 this.set("svg_attrs", Constants.polyline.failed);
                 break;
                 
-            case 'disable':
+            case 'disabled':
                 this.set("svg_attrs", Constants.polyline.disabled);
                 break;
             }            

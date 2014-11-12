@@ -12,26 +12,27 @@ define(function(require, exports, module) {
     var Polygon = Figure.extend({
         initialize: function(options) {
             this.constructor.__super__.initialize.apply(this, [options]);
-            this.set({
-                "coords": null,
-                "svg_attrs": Constants.polygon.normal
-            });
             this.coords = new Coords();
-            this.setSVG_attrs();
-            //this.toPath();
+            this.set({
+                "coords": this.coords,
+                "svg_attrs": Constants.polygon.normal,
+                "title": "polygon"
+            });
+            this.toPath();
+            this.setState();
         },
         
         //event trigger this
         toPath: function() {
             var path = "";
             //var coordsAry = this.get('coords').toArray();
-            var coordsAry = [{"x": 10, "y": 10}, {"x": 20, "y": 20}];
+            var coordsAry = [{"x": 100, "y": 100}, {"x": 400, "y": 100}, {"x": 400, "y": 300},{"x": 100, "y": 300}];
             if (coordsAry.length > 0) {
-                path += "M" + coordsAry[0].get("x") * this.get("scale_x") + "," + 
-                    coordsAry[0].get("y") * this.get("scale_y") + " ";
+                path += "M" + coordsAry[0].x * this.get("scale_x") + "," + 
+                    coordsAry[0].y * this.get("scale_y") + " ";
                 for ( var i = 1; i < coordsAry.length; i++){
-                    path += "L" + coordsAry[i].get("x") * this.get("scale_x") + "," + 
-                        coordsAry[i].get("y") * this.get("scale_y")+ " ";
+                    path += "L" + coordsAry[i].x * this.get("scale_x") + "," + 
+                        coordsAry[i].y * this.get("scale_y")+ " ";
                 }
                 path += "Z";
             }
@@ -39,18 +40,15 @@ define(function(require, exports, module) {
         },
 
         //event trigger this
-        set_state: function() {
-            this.set("state","accessed");
-            this.setSVG_attrs();
+        setState: function(state) {
+            var st = state || "secured";
+            this.set("state", st);
+            this.updateAttrs();
         },
         
-        // // event trigger this
-        // set_highlight: function() {
-        //     this.set("highlight", true);
-        // },
-
-        setSVG_attrs: function(state) {
-            switch (this.get("state")) {
+        updateAttrs: function() {
+            var state = this.get("state");
+            switch (state) {
             case 'accessed':
                 this.set("svg_attrs", Constants.polygon.accessed);
                 break;
@@ -63,8 +61,11 @@ define(function(require, exports, module) {
                 this.set("svg_attrs", Constants.polygon.failed);
                 break;
                 
-            case 'disable':
+            case 'disabled':
                 this.set("svg_attrs", Constants.polygon.disabled);
+                break;
+            
+                default :
                 break;
             }
             

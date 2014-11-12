@@ -29,11 +29,9 @@ define(function(require, exports, module) {
         },
 
         polyline: {
-            "selected":{
-                "stroke_width": 20
-            },
+
+            "width": 10,
             "normal":{
-                "stroke_width": 10,
                 "stroke": "green"
             },
             "accessed": {
@@ -81,23 +79,21 @@ define(function(require, exports, module) {
         },
 
         icon: {
-            "selected":{
-                "stroke": "yellow"
-            },
+            "width": 1,
             "normal":{
-                "stroke": "yellow"
+                "fill": "green"
             },
             "accessed": {
-                "stroke": "yellow"
+                "fill": "yellow"
             },
             "secured": {
-                "stroke": "green"
+                "fill": "green"
             },
             "failed": {
-                "stroke": "red"
+                "fill": "red"
             },
             "disabled":{
-                "stroke": "gray"
+                "fill": "gray"
             },
             
             BOX : "M2,0h28c1.104,0,2,0.896,2,2v12c0,1.104-0.896,2-2,2H2c-1.104,0-2-0.896-2-2l0,0V2C0,0.896,0.896,0,2,0z",

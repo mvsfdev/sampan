@@ -4,7 +4,7 @@ define(function(require, exports, module) {
     var Module = require("modules/models/polyline");
     var Constants = require("modules/constants");
     var Coords = require("modules/collections/coords");
- 
+
     // Test that the module exists.
     describe("models/polyline", function() {
         it("should exist", function() {
@@ -19,9 +19,8 @@ define(function(require, exports, module) {
         });
         describe("creation", function() {
             it("should has default values", function() {
-                //expect(this.polyline.get("position")).to.be.null;
-                expect(this.polyline.get("scale_x")).to.be.null;
-                expect(this.polyline.get("scale_y")).to.be.null;
+                expect(this.polyline.get("scale_x")).to.be.ok;
+                expect(this.polyline.get("scale_y")).to.be.ok;
                 expect(this.polyline.get("id")).to.be.ok;
                 expect(this.polyline.get("title")).to.be.ok;
                 expect(this.polyline.get("highlight")).to.be.null;

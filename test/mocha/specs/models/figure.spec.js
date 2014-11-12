@@ -17,9 +17,8 @@ define(function(require, exports, module) {
         });
         describe("creation", function() {
             it("should has default values", function() {
-                expect(this.figure.get("position")).to.be.null;
-                expect(this.figure.get("scale_x")).to.be.null;
-                expect(this.figure.get("scale_y")).to.be.null;
+                expect(this.figure.get("scale_x")).to.be.ok;
+                expect(this.figure.get("scale_y")).to.be.ok;
                 expect(this.figure.get("id")).to.be.ok;
                 expect(this.figure.get("title")).to.be.ok;
                 expect(this.figure.get("highlight")).to.be.null;

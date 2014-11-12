@@ -10,31 +10,38 @@ define(function(require, exports, module) {
     var Polyline = require("modules/models/polyline");
 
     var PolylineView = FigureView.extend({
-        initialize: function(board) {
-            this.constructor.__super__.initialize.apply(this, [board]);
-            this.model = new Polyline();
-            this.shape = board.path();
+        initialize: function(options) {
+            this.constructor.__super__.initialize.apply(this, [options]);
+            this.shape = options.paper.path();
             this.el = this.shape.node;
             this.$el= $(this.shape.node);
             this.render();
 
-            this.listenTo(this.model, "change:svg_attrs", this.render, this);
+            this.listenTo(this.model, "change", this.render, this);
             this.listenTo(this.model, "change:highlight", this.changeHighlight, this);
-            this.listenTo(this.model, "change:path", this.render, this);
         },
         
-        render: function() {
+        renderShape: function() {
             this.shape.attr({
                 "path": this.model.get("path"),
                 "title": this.model.get("title"),
-                svg_attrs: this.model.get("svg_attrs")
+                "stroke-width": Constants.polyline.width
             });
             this.glow = this.shape.glow({
                 "color": Constants.highlight.color,
                 "width": Constants.highlight.width
-            });
+            }).hide();
         },
-        
+
+        renderAttrs: function() {
+            this.shape.attr(this.model.get("svg_attrs"));
+        },
+
+        render: function() {
+            this.renderAttrs();
+            this.renderShape();
+        },
+
         changeHighlight: function(model) {
             if (model.get("highlight")){
                 this.glow.show();
@@ -42,7 +49,6 @@ define(function(require, exports, module) {
                 this.glow.hide();
             }
         }
-        
     });
     
     module.exports = PolylineView;

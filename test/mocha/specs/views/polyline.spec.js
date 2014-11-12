@@ -1,18 +1,21 @@
 define(function(require, exports, module) {
     "use strict";
     
-    var Module = require("modules/views/polyline");
+    var PolylineView = require("modules/views/polyline");
     var Raphael = require("raphael");
-    //var spy = sinon.spy();
+    var Polyline = require("modules/models/polyline");
+    var Constants = require("modules/constants");
     
     // Test that the module exists.
     describe("views/polyline", function() {
         it("should exist", function() {
-            expect(Module).to.exist;
+            expect(Polyline).to.exist;
         });
         before(function (){
-            var board = Raphael(0,0,1920,1080);
-            this.view = new Module(board);
+            var paper = Raphael(0,0,1920,1080);
+            var model = new Polyline();
+            this.view = new PolylineView({paper : paper, model : model});
+
         });
         
         after(function() {

@@ -9,33 +9,43 @@ define(function(require, exports, module) {
     var Constants = require("modules/constants");
 
     var IconView = FigureView.extend({
-        initialize: function() {
-            // this.shape = options.canvas.paper.path();
-            // this.shape.attr({
+        initialize: function(options) {
+            this.constructor.__super__.initialize.apply(this, [options]);
+            this.model = options.model;
+            this.shape = options.paper.path();
+            this.el = this.shape.node;
+            this.$el = $(this.shape.node);
+            this.render();
+            this.shape.transform('t290,190');
 
-            // });
-            // this.el = this.shape;
-            // this.render();
-
-            // this.listenTo(this.model, "change:svg_attrs", this.render, this);
-            // this.listenTo(this.model, "change:highlight", this.changeHighlight(), this);
+            this.listenTo(this.model, "change", this.render, this);
+            this.listenTo(this.model, "change:highlight", this.changeHighlight, this);
         },
 
-        render: function() {
+        renderShape: function() {
             var path = this.model.get("background");
-                path += this.model.get("foreground");
+            path += this.model.get("foreground");
 
             this.shape.attr({
                 "path": path,
+
                 "title": this.model.get("title"),
-                "stroke": this.model.get("svg_attrs").stroke,
-                "stroke-width": Constants.polygon.base.stroke_width
+                "stroke-width": Constants.icon.width
             });
-            
             this.glow = this.shape.glow({
                 "color": Constants.highlight.color,
                 "width": Constants.highlight.width
-            });
+            }).hide();
+            this.glow.transform("t290,190");
+        },
+
+        renderAttrs: function() {
+            this.shape.attr(this.model.get("svg_attrs"));
+        },
+
+        render: function() {
+            this.renderAttrs();
+            this.renderShape();
         },
 
         changeHighlight: function(model) {

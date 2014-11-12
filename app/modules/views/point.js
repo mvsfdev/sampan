@@ -7,7 +7,6 @@ define(function(require, exports, module) {
     var app = require("app");
     var FigureView = require("modules/views/figure");
     var Constants = require("modules/constants");
-    var Point = require("modules/models/point");
 
     var PointView = FigureView.extend({
         initialize: function(options) {

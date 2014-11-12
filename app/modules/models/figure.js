@@ -5,13 +5,13 @@ define(function(require, exports, module) {
     var _ = require("underscore");
     var Backbone = require("backbone");
     var app = require("app");
-
+    var Constants = require("modules/constants");
 
     var Figure = Backbone.Model.extend({
 	defaults: {
             position: null,
-            scale_x: null,
-            scale_y: null,
+            scale_x: 0.5,
+            scale_y: 0.8,
             id: " ",
             title: "alarm",
             highlight: null,
@@ -42,9 +42,13 @@ define(function(require, exports, module) {
             //this.drag(move, up);
             this.click_mod(this.model);
             return true;
+        },
+
+        setHighlights: function() {
+            this.set("highlight", true);
+            //return this;
         }
 
-        
         
     });
     module.exports = Figure;
