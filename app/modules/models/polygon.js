@@ -9,7 +9,7 @@ define(function(require, exports, module) {
     var Coords = require("modules/collections/coords");
     var Constants = require("modules/constants");
     
-    var Polygon = Figure.extend({
+    var XPolygon = Figure.extend({
         initialize: function(options) {
             this.constructor.__super__.initialize.apply(this, [options]);
             this.coords = new Coords();
@@ -24,7 +24,21 @@ define(function(require, exports, module) {
             this.setState();
         },
         
-        //event trigger this
+        getElement: function(paper) {
+            return paper.path();
+        },
+
+        getShape: function() {
+            return {
+            "path": this.get("path")
+            };
+        },
+
+        getAttrs: function() {
+            this.updateAttrs();
+            return this.get("svg_attrs");
+        },
+
         toPath: function() {
             var path = "";
             //var coordsAry = this.get('coords').toArray();
@@ -76,6 +90,6 @@ define(function(require, exports, module) {
         
 
     });
-    module.exports = Polygon;
+    module.exports = XPolygon;
     
 });

@@ -20,13 +20,29 @@ define(function(require, exports, module) {
                 "mod_type": "PM",
                 "title": "icon"
             });
-            this.setIconType(this.get("mod_type"));
+            this.setIconType();
             this.setState();
         },
 
-        setIconType: function(type) {
-            var icon = " ";
-            switch(type) {
+        getElement: function(paper) {
+            return paper.path();
+        },
+
+        getShape: function() {
+            return {
+                "path":this.get("background") + this.get("foreground")
+            };
+        },
+        
+        getAttrs: function() {
+            this.updateAttrs();
+            return this.get("svg_attrs");
+        },
+
+        setIconType: function() {
+            var icon = " ",
+                tp = this.get("mod_type");
+            switch(tp) {
             case "PM":
                 icon = Constants.icon.PM;
                 break;
@@ -39,7 +55,7 @@ define(function(require, exports, module) {
             case "TU":
                 icon = Constants.icon.TU;
                 break;
-                default:
+            default:
                 break;
             }
             this.set("foreground", icon);
@@ -69,7 +85,7 @@ define(function(require, exports, module) {
             case 'disable':
                 this.set("svg_attrs", Constants.icon.disabled);
                 break;
-                default:
+            default:
                 break;
 
             }            

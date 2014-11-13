@@ -8,7 +8,7 @@ define(function(require, exports, module) {
     var Figure = require("modules/models/figure");
     var Constants = require("modules/constants");
 
-    var Point = Figure.extend({
+    var XPoint = Figure.extend({
         initialize: function(options) {
             this.constructor.__super__.initialize.apply(this, [options]);
             this.set({
@@ -18,6 +18,23 @@ define(function(require, exports, module) {
                 "title": "alarm"
             });
             this.setState();
+        },
+
+        getElement: function(paper) {
+            return paper.circle();
+        },
+
+        getShape: function() {
+            return {
+                "cx": this.get("x"),
+                "cy": this.get("y"),
+                "r": this.get("r")
+            };
+        },
+        
+        getAttrs: function() {
+            this.updateAttrs();
+            return this.get("svg_attrs");
         },
 
         setState: function(state) {
@@ -42,6 +59,6 @@ define(function(require, exports, module) {
         }
     });
 
-    module.exports = Point;
+    module.exports = XPoint;
 });
 

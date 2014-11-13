@@ -29,75 +29,86 @@ define(function(require, exports, module) {
         },
 
         polyline: {
-            "x": 320,
-            "y": 20,
-            "width": 10,
-            "normal":{
-                "stroke": "green"
+            x : 320,
+            y : 20,
+            normal : {
+                "stroke": "green",
+                "stroke-width": 5
             },
-            "accessed": {
-                "stroke": "yellow"
+            accessed : {
+                "stroke": "yellow",
+                "stroke-width": 5
             },
-            "secured": {
-                "stroke": "green"
+            secured : {
+                "stroke": "green",
+                "stroke-width": 5
             },
-            "failed": {
-                "stroke": "red"
+            failed : {
+                "stroke": "red",
+                "stroke-width": 5
             },
-            "disabled":{
-                "stroke": "gray"
+            disabled : {
+                "stroke": "gray",
+                "stroke-width": 5
             }
         },
         
         polygon: {
-            "x": 120,
-            "y": 20,
-            "base":{
-                "fill_opacity": 0.6,
-                "stroke_width": 5
-            },
+            x : 120,
+            y : 20,
             
-            "selected":{
+            selected : {
 
             },
-            "normal":{
+            normal : {
 
             },
-            "accessed": {
+            accessed : {
                 "stroke": "yellow",
-                "fill": "yellow"
+                "fill": "yellow",
+                "fill-opacity": 0.6,
+                "stroke-width": 5
+
             },
-            "secured": {
+            secured : {
                 "stroke": "blue",
-                "fill": "blue"
+                "fill": "blue",
+                "fill-opacity": 0.6,
+                "stroke-width": 5
+
             },
-            "failed": {
+            failed : {
                 "stroke": "red",
-                "fill": "red"
+                "fill": "red",
+                "fill-opacity": 0.6,
+                "stroke-width": 5
+
             },
-            "disabled":{
+            disabled : {
                 "stroke": "gray",
-                "fill": "gray"
+                "fill": "gray",
+                "fill-opacity": 0.6,
+                "stroke-width": 5
+
             }
         },
 
         icon: {
-            "width": 1,
-            "x": 100,
-            "y": 100,
-            "normal":{
+            x : 100,
+            y : 100,
+            normal : {
                 "fill": "green"
             },
-            "accessed": {
+            accessed : {
                 "fill": "yellow"
             },
-            "secured": {
+            secured : {
                 "fill": "green"
             },
-            "failed": {
+            failed : {
                 "fill": "red"
             },
-            "disabled":{
+            disabled : {
                 "fill": "gray"
             },
             
