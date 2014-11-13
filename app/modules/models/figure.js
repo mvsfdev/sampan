@@ -9,9 +9,10 @@ define(function(require, exports, module) {
 
     var Figure = Backbone.Model.extend({
 	defaults: {
-            position: null,
-            scale_x: 0.5,
-            scale_y: 0.8,
+            x : null,
+            y : null,
+            scale_x: Constants.figure.scale_x,
+            scale_y: Constants.figure.scale_y,
             id: " ",
             title: " ",
             highlight: null,

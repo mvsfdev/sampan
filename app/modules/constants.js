@@ -11,6 +11,12 @@ define(function(require, exports, module) {
             "color": "#FFE303",
             "width": 50
         },
+
+        figure: {
+            scale_x : 0.5,
+            scale_y : 0.8
+        },
+
         point: {
             current_alarm: {
 

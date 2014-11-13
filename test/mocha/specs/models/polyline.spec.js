@@ -27,15 +27,20 @@ define(function(require, exports, module) {
                 expect(this.polyline.get("svg_attrs")).to.be.ok;
                 expect(this.polyline.get("coords")).to.be.ok;
                 expect(this.polyline.get("svg_attrs")).to.be.ok;
-
             });
         });
         describe("function", function() {
-            it("should has function - toPath", function() {
-                expect(this.polyline.toPath).to.be.ok;
-            });
-            it("should has function - setSVG_attrs", function() {
-                expect(this.polyline.updateAttrs).to.be.ok;
+            it("should has function", function() {
+                expect(this.polyline.getElement).to.be.exist;
+                expect(this.polyline.getShape).to.be.exist;
+                expect(this.polyline.getAttrs).to.be.exist;
+                expect(this.polyline.toPath).to.be.exist;
+                expect(this.polyline.setState).to.be.exist;
+                expect(this.polyline.updateAttrs).to.be.exist;
+                this.polyline.setState("failed");
+                expect(this.polyline.get("svg_attrs")).to.be.equal(Constants.polyline.failed);
+                this.polyline.getAttrs();
+                expect(this.polyline.get("svg_attrs")).to.be.equal(Constants.polyline.failed);
             });
         });
 
@@ -53,6 +58,7 @@ define(function(require, exports, module) {
                     "svg_attrs",Constants.polyline.secured);
                 expect(this.polyline.get("svg_attrs")).to.be.equal(Constants.polyline.secured);
                 
+
                 this.polyline.set(
                     "svg_attrs",Constants.polyline.failed);
                 expect(this.polyline.get("svg_attrs")).to.be.equal(Constants.polyline.failed);

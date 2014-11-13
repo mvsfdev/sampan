@@ -9,7 +9,7 @@ define(function(require, exports, module) {
     var Constants = require("modules/constants");
     var Coords = require("modules/collections/coords");
 
-    var XPolyline = Figure.extend({
+    var Polyline = Figure.extend({
         initialize: function(options) {
             this.constructor.__super__.initialize.apply(this, [options]);
             this.coords = new Coords([
@@ -90,5 +90,5 @@ define(function(require, exports, module) {
         }
         
     });
-    module.exports = XPolyline;
+    module.exports = Polyline;
 });

@@ -34,6 +34,10 @@ define(function(require, exports, module) {
         });
         describe("modification", function() {
             it("should has default values", function() {
+                this.icon.setState("failed");
+                expect(this.icon.get("svg_attrs")).to.be.equal(Constants.icon.failed);
+                this.icon.getAttrs();
+                expect(this.icon.get("svg_attrs")).to.be.equal(Constants.icon.failed);
                 this.icon.setIconType("PM");
                 expect(this.icon.get("foreground")).to.be.equal(Constants.icon.PM);
             });

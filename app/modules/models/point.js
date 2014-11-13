@@ -8,7 +8,7 @@ define(function(require, exports, module) {
     var Figure = require("modules/models/figure");
     var Constants = require("modules/constants");
 
-    var XPoint = Figure.extend({
+    var Point = Figure.extend({
         initialize: function(options) {
             this.constructor.__super__.initialize.apply(this, [options]);
             this.set({
@@ -59,6 +59,6 @@ define(function(require, exports, module) {
         }
     });
 
-    module.exports = XPoint;
+    module.exports = Point;
 });
 
