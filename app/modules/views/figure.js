@@ -10,15 +10,6 @@ define(function(require, exports, module) {
         initialize: function(options) {
         },
 
-        events: {
-            "click": "setHighlight"
-        },
-
-        setHighlight: function() {
-            this.model.setHighlights();
-        },
-
-        
         dragstart: function(){
         },
         

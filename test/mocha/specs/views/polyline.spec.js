@@ -26,7 +26,6 @@ define(function(require, exports, module) {
         describe("views/polyline", function() {
             it("should exist function", function() {
                 expect(this.view.render).to.exist;
-                expect(this.view.changeHighlight).to.exist;
 
             });
         });

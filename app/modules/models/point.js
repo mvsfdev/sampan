@@ -14,7 +14,8 @@ define(function(require, exports, module) {
             this.set({
                 "x": Constants.point.x,
                 "y": Constants.point.y,
-                "r": Constants.point.radius
+                "r": Constants.point.radius,
+                "title": "alarm"
             });
             this.setState();
         },

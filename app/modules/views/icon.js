@@ -19,7 +19,6 @@ define(function(require, exports, module) {
             this.shape.transform('t290,190');
 
             this.listenTo(this.model, "change", this.render, this);
-            this.listenTo(this.model, "change:highlight", this.changeHighlight, this);
         },
 
         renderShape: function() {
@@ -32,11 +31,6 @@ define(function(require, exports, module) {
                 "title": this.model.get("title"),
                 "stroke-width": Constants.icon.width
             });
-            this.glow = this.shape.glow({
-                "color": Constants.highlight.color,
-                "width": Constants.highlight.width
-            }).hide();
-            this.glow.transform("t290,190");
         },
 
         renderAttrs: function() {
@@ -46,16 +40,8 @@ define(function(require, exports, module) {
         render: function() {
             this.renderAttrs();
             this.renderShape();
-        },
-
-        changeHighlight: function(model) {
-            if (model.get("highlight")){
-                this.glow.show();
-            }else{
-                this.glow.hide();
-            }
         }
-        
+
     });
     
     module.exports = IconView;

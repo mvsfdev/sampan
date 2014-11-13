@@ -18,7 +18,6 @@ define(function(require, exports, module) {
             this.render();
 
             this.listenTo(this.model, "change", this.render, this);
-            this.listenTo(this.model, "change:highlight", this.changeHighlight, this);
         },
 
         renderShape: function () {
@@ -30,10 +29,6 @@ define(function(require, exports, module) {
                 "fill-opacity": Constants.polygon.base.fill_opacity
             });
 
-            this.glow = this.shape.glow({
-                "color": Constants.highlight.color,
-                "width": Constants.highlight.width
-            }).hide();
         },
 
         renderAttrs: function () {
@@ -43,15 +38,8 @@ define(function(require, exports, module) {
         render: function () {
             this.renderShape();
             this.renderAttrs();
-        },
-
-        changeHighlight: function(model) {
-            if (model.get("highlight")){
-                this.glow.show();
-            }else{
-                this.glow.hide();
-            }
         }
+
     });
     
     module.exports = PolygonView;

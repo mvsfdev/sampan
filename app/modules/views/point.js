@@ -13,6 +13,7 @@ define(function(require, exports, module) {
             this.constructor.__super__.initialize.apply(this, [options]);
             this.model = options.model;
             this.shape = options.paper.circle();
+            this.shape.attr("title", this.model.get("title"));
             this.el = this.shape.node;
             this.$el = $(this.shape.node);
             this.render();
@@ -26,10 +27,9 @@ define(function(require, exports, module) {
         },
         
         renderShape: function() {
-            this.shape.attr({cx :  this.model.get("x"),
-                             cy :  this.model.get("y"),
-                             r :  this.model.get("r"),
-                             title: this.model.get("title")
+            this.shape.attr({"cx":  this.model.get("x"),
+                             "cy":  this.model.get("y"),
+                             "r":  this.model.get("r")
                             });
         },
         
