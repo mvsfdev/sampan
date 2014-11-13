@@ -17,7 +17,7 @@ define(function(require, exports, module) {
             this.el = this.shape.node;
             this.$el = $(this.shape.node);
             this.render();
-
+            this.drag();
             this.listenTo(this.model, "change", this.render, this);
             this.listenTo(this.model, "destory", this.removed, this);
         },
@@ -27,9 +27,9 @@ define(function(require, exports, module) {
         },
         
         renderShape: function() {
-            this.shape.attr({"cx":  this.model.get("x"),
-                             "cy":  this.model.get("y"),
-                             "r":  this.model.get("r")
+            this.shape.attr({"cx":  this.model.get("x") * this.model.get("scale_x"),
+                             "cy":  this.model.get("y") * this.model.get("scale_y"),
+                             "r":  this.model.get("r") 
                             });
         },
         
@@ -41,6 +41,36 @@ define(function(require, exports, module) {
         render: function() {
             this.renderShape();
             this.renderAttrs();
+        },
+
+        drag: function() {
+            var self = this;
+             function move(dx, dy) {
+                 self.update(dx - (self.dx || 0), dy - (self.dy || 0));
+                 self.dx = dx;
+                 self.dy = dy;
+             }
+            
+             function up() {
+                 self.dx = self.dy = 0;
+             }
+
+            this.update = function (x, y){
+                var X = this.shape.attr("cx") + x,
+                    Y = this.shape.attr("cy") + y,
+                    scale_x = this.model.get("scale_x"),
+                    scale_y = this.model.get("scale_y");
+                var x0 = Math.round(X / scale_x),
+                    y0 = Math.round(Y / scale_y);
+                this.shape.attr({cx: X, cy: Y});
+                this.model.set({
+                    "x": x0,
+                    "y": y0
+                });
+                console.log(this.model.get("x"));
+            };
+            
+            this.shape.drag(move,up);
         }
     });
 

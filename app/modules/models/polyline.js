@@ -14,6 +14,8 @@ define(function(require, exports, module) {
             this.constructor.__super__.initialize.apply(this, [options]);
             this.coords = new Coords();
             this.set({
+                "x": Constants.polyline.x,
+                "y": Constants.polyline.y,
                 svg_attrs: Constants.polyline.normal,
                 "coords": this.coords,
                 "state": " ",

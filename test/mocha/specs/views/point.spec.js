@@ -25,12 +25,12 @@ define(function(require, exports, module) {
 
         describe("'view' by default", function() {
             it("has default value", function() {
-                expect(this.view.$el.attr("cx")).to.be.equal('20');
-                expect(this.view.$el.attr("cy")).to.be.equal('90');
+                 expect(this.view.$el.attr("cx")).to.be.ok;
+                 expect(this.view.$el.attr("cy")).to.be.ok;
                 expect(this.view.$el.attr("r")).to.be.equal(Constants.point.radius.toString());
             });
         });
-        
+       
         
     });
 });

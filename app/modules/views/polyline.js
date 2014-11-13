@@ -16,6 +16,7 @@ define(function(require, exports, module) {
             this.el = this.shape.node;
             this.$el= $(this.shape.node);
             this.render();
+            this.drag();
 
             this.listenTo(this.model, "change", this.render, this);
         },
@@ -35,7 +36,49 @@ define(function(require, exports, module) {
         render: function() {
             this.renderAttrs();
             this.renderShape();
+            this.transform();
+        },
+        
+        transform: function() {
+            var scale_x = this.model.get("scale_x"),
+                scale_y = this.model.get("scale_y"),
+                x = this.model.get("x") * scale_x,
+                y = this.model.get("y") * scale_y;
+            this.shape.transform("t" + x + "," + y);
+        },
+
+        drag: function() {
+            var self = this;
+            function move(dx, dy) {
+                self.update(dx - (self.dx || 0), dy - (self.dy || 0));
+                self.dx = dx;
+                self.dy = dy;
+            }
+            
+            function up() {
+                self.dx = self.dy = 0;
+            }
+
+            this.update = function (x, y){
+                var scale_x = this.model.get("scale_x"),
+                    scale_y = this.model.get("scale_y"),
+                    x1 = this.model.get("x") * scale_x,
+                    y1 = this.model.get("y") * scale_y,
+                    X = x1 + x,
+                    Y = y1 + y;
+                var x0 = Math.round(X / scale_x),
+                    y0 = Math.round(Y / scale_y);
+                //this.shape.attr({cx: X, cy: Y});
+                this.model.set({
+                    "x": x0,
+                    "y": y0
+                });
+                console.log(this.model.get("x"));
+            };
+            
+            this.shape.drag(move,up);
         }
+
 
     });
     

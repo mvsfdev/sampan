@@ -12,6 +12,8 @@ define(function(require, exports, module) {
         initialize: function(options) {
             this.constructor.__super__.initialize.apply(this, [options]);
             this.set({
+                "x": Constants.icon.x,
+                "y": Constants.icon.y,
                 "background": Constants.icon.BOX,
                 "svg_attrs": Constants.icon.normal,
                 "state": " ",

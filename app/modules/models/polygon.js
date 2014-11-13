@@ -14,6 +14,8 @@ define(function(require, exports, module) {
             this.constructor.__super__.initialize.apply(this, [options]);
             this.coords = new Coords();
             this.set({
+                "x": Constants.polygon.x,
+                "y": Constants.polygon.y,
                 "coords": this.coords,
                 "svg_attrs": Constants.polygon.normal,
                 "title": "polygon"

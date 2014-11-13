@@ -29,7 +29,8 @@ define(function(require, exports, module) {
         },
 
         polyline: {
-
+            "x": 320,
+            "y": 20,
             "width": 10,
             "normal":{
                 "stroke": "green"
@@ -49,6 +50,8 @@ define(function(require, exports, module) {
         },
         
         polygon: {
+            "x": 120,
+            "y": 20,
             "base":{
                 "fill_opacity": 0.6,
                 "stroke_width": 5
@@ -80,6 +83,8 @@ define(function(require, exports, module) {
 
         icon: {
             "width": 1,
+            "x": 100,
+            "y": 100,
             "normal":{
                 "fill": "green"
             },
