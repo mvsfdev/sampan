@@ -26,10 +26,10 @@ define(function(require, exports, module) {
                 "path": " ",
                 "title": "polyline"
             });
-            this.toPath();
+            this.makeShape();
             this.setState();
         },
-        
+
         getElement: function(paper) {
             return paper.path();
         },
@@ -45,17 +45,19 @@ define(function(require, exports, module) {
             return this.get("svg_attrs");
         },
 
-        toPath: function(){
-            var path = "";
-                //coordsAry = this.coords.toArray();
-            
-            var coordsAry = [{"x": 10, "y": 10}, {"x": 200, "y": 20},{"x": 90,"y": 190}];
+        makeShape : function() {
+            var x = this.get("x") , 
+                y = this.get("y") ,
+                scale_x = this.get("scale_x"),
+                scale_y = this.get("scale_y"),
+                path;
+            //var coordsAry = this.get('coords').toArray();
+            var coordsAry = [{"x": 200, "y": 20},{"x": 90,"y": 190}];
             if (coordsAry.length > 0) {
-                path += "M" + coordsAry[0].x * this.get("scale_x") + "," + 
-                    coordsAry[0].y * this.get("scale_y") + " ";
-                for ( var i = 1; i < coordsAry.length; i++){
-                    path += "L" + coordsAry[i].x * this.get("scale_x") + "," + 
-                        coordsAry[i].y * this.get("scale_y")+ " ";
+                path = "M" + x * scale_x + "," + y * scale_y; 
+                for ( var i = 0; i < coordsAry.length; i++){
+                    path += "L" + (coordsAry[i].x + x) * scale_x + "," + 
+                        (y + coordsAry[i].y) * scale_y  + " ";
                 }
             }
             this.set("path", path);

@@ -13,7 +13,7 @@ define(function(require, exports, module) {
         },
 
         figure: {
-            scale_x : 0.5,
+            scale_x : 0.8,
             scale_y : 0.8
         },
 
