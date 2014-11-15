@@ -14,7 +14,8 @@ require.config({
     // Map remaining vendor dependencies.
     "jquery": "../vendor/bower/jquery/jquery",
       "backbone": "../vendor/bower/backbone/backbone",
-    "raphael": "../vendor/bower/raphael/raphael",
+    //"svg": "../vendor/bower/raphael/raphael",
+    "svg": "../vendor/bower/snap.svg/dist/snap.svg",
   },
 
   shim: {

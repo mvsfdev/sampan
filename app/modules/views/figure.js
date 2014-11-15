@@ -10,7 +10,7 @@ define(function(require, exports, module) {
 
     var FigureView = Backbone.View.extend({
         initialize: function(options) {
-            this.shape = this.model.getElement(options.paper);
+            this.shape = this.model.getElement(options.board);
             this.shape.attr("title", this.model.get("title"));
             this.el = this.shape.node;
             this.$el= $(this.shape.node);

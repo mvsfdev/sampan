@@ -39,22 +39,27 @@ define(function(require, exports, module) {
             y : 20,
             normal : {
                 "stroke": "green",
+                "fill": "none",
                 "stroke-width": 5
             },
             accessed : {
                 "stroke": "yellow",
+                "fill": "none",
                 "stroke-width": 5
             },
             secured : {
                 "stroke": "green",
+                "fill": "none",
                 "stroke-width": 5
             },
             failed : {
                 "stroke": "red",
+                "fill": "none",
                 "stroke-width": 5
             },
             disabled : {
                 "stroke": "gray",
+                "fill": "none",
                 "stroke-width": 5
             }
         },

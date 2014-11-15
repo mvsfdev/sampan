@@ -20,14 +20,14 @@ define(function(require, exports, module) {
             this.setState();
         },
 
-        getElement: function(paper) {
-            return paper.circle();
+        getElement: function(board) {
+            return board.paper.circle();
         },
 
         getShape: function() {
             return {
-                "cx": this.get("x"),
-                "cy": this.get("y"),
+                "cx": this.get("x") * this.get("scale_x"),
+                "cy": this.get("y") * this.get("scale_y"),
                 "r": this.get("r")
             };
         },

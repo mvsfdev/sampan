@@ -24,8 +24,8 @@ define(function(require, exports, module) {
             this.setState();
         },
 
-        getElement: function(paper) {
-            return paper.path();
+        getElement: function(board) {
+            return board.paper.path();
         },
 
         getShape: function() {
