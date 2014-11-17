@@ -19,8 +19,8 @@ define(function(require, exports, module) {
             this.render();
 
             this.model.on("change", this.render, this);
-
             this.enableDrag();
+            this.options = options;
         },
 
         events: {
@@ -32,7 +32,14 @@ define(function(require, exports, module) {
         },
 
         renderAttrs: function() {
-            this.shape.attr(this.model.getAttrs());
+             if(this.model.get("highlight")){
+                 this.shape.attr(this.model.getAttrs());
+                 this.shape.attr("filter", this.options.shadow);
+                 console.log(1);
+             }else {
+                 this.shape.attr(this.model.getAttrs());
+                 this.shape.attr("filter", this.options.no_shadow);
+             }
         },
 
         render: function() {
@@ -42,8 +49,7 @@ define(function(require, exports, module) {
 
         // shadow Function
         setShadow: function(){
-            var shadow = this.board.filter(Svg.filter.shadow(0,2,"yellow",9));
-            this.shape.attr("filter", shadow);
+            this.model.set("highlight",true);
         },
         // Drag-n-Drop Function
         enableDrag : function() {
