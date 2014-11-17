@@ -4,6 +4,7 @@ define(function(require, exports, module) {
     var $ = require("jquery");
     var _ = require("underscore");
     var Backbone = require("backbone");
+    var Svg = require("svg");
     var app = require("app");
     var Constants = require("modules/constants");
     var fihure = require("modules/models/figure");
@@ -12,13 +13,18 @@ define(function(require, exports, module) {
         initialize: function(options) {
             this.shape = this.model.getElement(options.board);
             this.shape.attr("title", this.model.get("title"));
+            this.board = options.board;
             this.el = this.shape.node;
             this.$el= $(this.shape.node);
             this.render();
+
             this.model.on("change", this.render, this);
 
             this.enableDrag();
+        },
 
+        events: {
+            "click": "setShadow"
         },
 
         renderShape: function() {
@@ -34,6 +40,11 @@ define(function(require, exports, module) {
             this.renderAttrs();
         },
 
+        // shadow Function
+        setShadow: function(){
+            var shadow = this.board.filter(Svg.filter.shadow(0,2,"yellow",9));
+            this.shape.attr("filter", shadow);
+        },
         // Drag-n-Drop Function
         enableDrag : function() {
             this.shape.data("self",this);

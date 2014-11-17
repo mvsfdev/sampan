@@ -38,16 +38,13 @@ define(function(require, exports, module) {
                 expect(this.polygon.getElement).to.be.exist;
                 expect(this.polygon.getShape).to.be.exist;
                 expect(this.polygon.getAttrs).to.be.exist;
-                expect(this.polygon.toPath).to.be.exist;
+                expect(this.polygon.makeShape).to.be.exist;
                 expect(this.polygon.setState).to.be.exist;
                 expect(this.polygon.updateAttrs).to.be.exist;
             });
         });
 
         describe("function", function() {
-            it("should has function - toPath", function() {
-                expect(this.polygon.toPath).to.be.ok;
-            });
             it("should has function - setSVG_attrs", function() {
                 expect(this.polygon.updateAttrs).to.be.ok;
                 //this.polygon.set("state","failed");

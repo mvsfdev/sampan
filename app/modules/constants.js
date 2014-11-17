@@ -35,7 +35,7 @@ define(function(require, exports, module) {
         },
 
         polyline: {
-            x : 320,
+            x : 10,
             y : 20,
             normal : {
                 "stroke": "green",
@@ -108,19 +108,24 @@ define(function(require, exports, module) {
             x : 100,
             y : 100,
             normal : {
-                "fill": "green"
+                "fill": "green",
+                "stroke": "black"
             },
             accessed : {
-                "fill": "yellow"
+                "fill": "yellow",
+                "stroke": "black"
             },
             secured : {
-                "fill": "green"
+                "fill": "green",
+                "stroke": "black"
             },
             failed : {
-                "fill": "red"
+                "fill": "red",
+                "stroke": "black"
             },
             disabled : {
-                "fill": "gray"
+                "fill": "gray",
+                "stroke": "black"
             },
             
             BOX : "M2,0h28c1.104,0,2,0.896,2,2v12c0,1.104-0.896,2-2,2H2c-1.104,0-2-0.896-2-2l0,0V2C0,0.896,0.896,0,2,0z",

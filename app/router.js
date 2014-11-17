@@ -9,9 +9,7 @@ define(function(require, exports, module) {
     var Polyline = require("modules/models/polyline");
     var Polygon = require("modules/models/polygon");
     var Icon = require("modules/models/icon");
-
     var FigureView = require("modules/views/figure");
-
     var Svg = require("svg");
     var Constants = require("modules/constants");
 
@@ -22,7 +20,8 @@ define(function(require, exports, module) {
         },
         
         index: function() {
-            var board = new Svg("100%","100%");
+            var board = new Svg(1920,1080);
+            //var board = new Svg("100%","100%");
 
             var point = new Point();
             this.pointView = new FigureView({board : board, model : point});

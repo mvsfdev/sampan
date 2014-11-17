@@ -28,7 +28,7 @@ define(function(require, exports, module) {
         moveShape : function(dx,dy) {
             this.set("x", this.get("x") + dx / this.get("scale_x"));
             this.set("y", this.get("y") + dy / this.get("scale_y"));
-            this.makeShape();
+            this.makeShape(dx,dy);
         },
 
         makeShape: function() {

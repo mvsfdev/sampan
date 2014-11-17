@@ -4,6 +4,7 @@ define(function(require, exports, module) {
     var $ = require("jquery");
     var _ = require("underscore");
     var Backbone = require("backbone");
+    var Svg = require("svg");
     var app = require("app");
     var Figure = require("modules/models/figure");
     var Constants = require("modules/constants");
@@ -30,7 +31,7 @@ define(function(require, exports, module) {
 
         getShape: function() {
             return {
-                "path":this.get("background") + this.get("foreground")
+                "path": this.get("foreground") + this.get("background")
             };
         },
         
@@ -38,6 +39,19 @@ define(function(require, exports, module) {
             this.updateAttrs();
             return this.get("svg_attrs");
         },
+
+         makeShape: function(dx,dy) {
+             var scale_x = this.get("scale_x"),
+                 scale_y = this.get("scale_y"),
+                 x = this.get("x") * scale_x,
+                 y = this.get("y") * scale_y,
+                 m = Svg.matrix().translate(dx,dy);
+             //console.log(m);
+             this.set("background",Svg.path.map(this.get("background"),m) );
+             this.set("foreground",Svg.path.map(this.get("foreground"),m) );
+             this.set("path",this.get("background") + this.get("foreground"));
+             //console.log(Svg.matrix(x,y));        
+         },
 
         setIconType: function() {
             var icon = " ",

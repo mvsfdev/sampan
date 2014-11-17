@@ -34,7 +34,7 @@ define(function(require, exports, module) {
                 expect(this.polyline.getElement).to.be.exist;
                 expect(this.polyline.getShape).to.be.exist;
                 expect(this.polyline.getAttrs).to.be.exist;
-                expect(this.polyline.toPath).to.be.exist;
+                expect(this.polyline.makeShape).to.be.exist;
                 expect(this.polyline.setState).to.be.exist;
                 expect(this.polyline.updateAttrs).to.be.exist;
                 this.polyline.setState("failed");
