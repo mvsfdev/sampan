@@ -7,6 +7,21 @@ define(function(require, exports, module) {
     var app = require("app");
     
     var Constants = {
+        
+        shadow: {
+            "dx": 0,
+            "dy": 2,
+            "color": "yellow",
+            "opacity": 9
+        },
+
+        no_shadow: {
+            "dx": 0,
+            "dy": 2,
+            "color": "white",
+            "opacity": 9
+        },
+
         highlight: {
             "color": "#FFE303",
             "width": 50

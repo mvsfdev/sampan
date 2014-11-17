@@ -46,9 +46,15 @@ define(function(require, exports, module) {
         setHighlights: function() {
             this.set("highlight", true);
             //return this;
-        }
+        },
 
-        
+        toggleHighlight: function() {
+            if(this.get("highlight") == true){
+                this.set("highlight",false);
+            }else{
+                this.set("highlight",true);
+            }
+        }
     });
     module.exports = Figure;
 });

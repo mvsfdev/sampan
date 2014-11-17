@@ -13,14 +13,15 @@ define(function(require, exports, module) {
         initialize: function(options) {
             this.shape = this.model.getElement(options.board);
             this.shape.attr("title", this.model.get("title"));
-            this.board = options.board;
             this.el = this.shape.node;
             this.$el= $(this.shape.node);
             this.render();
 
             this.model.on("change", this.render, this);
             this.enableDrag();
+            this.board = options.board;
             this.options = options;
+            this.model_n = options.model;
         },
 
         events: {
@@ -35,7 +36,6 @@ define(function(require, exports, module) {
              if(this.model.get("highlight")){
                  this.shape.attr(this.model.getAttrs());
                  this.shape.attr("filter", this.options.shadow);
-                 console.log(1);
              }else {
                  this.shape.attr(this.model.getAttrs());
                  this.shape.attr("filter", this.options.no_shadow);
@@ -49,7 +49,7 @@ define(function(require, exports, module) {
 
         // shadow Function
         setShadow: function(){
-            this.model.set("highlight",true);
+            this.model_n.toggleHighlight();
         },
         // Drag-n-Drop Function
         enableDrag : function() {
