@@ -17,7 +17,7 @@ define(function(require, exports, module) {
             this.$el= $(this.shape.node);
             this.render();
 
-            this.model.on("change", this.render, this);
+            this.model.on("change", function() {this.render();}, this);
             this.enableDrag();
             this.board = options.board;
             this.options = options;

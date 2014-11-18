@@ -7,18 +7,34 @@ define(function(require, exports, module) {
     var app = require("app");
     
     var Constants = {
-        
+
+        hotpoint: {
+            r : 3,
+            start: {
+
+                "stroke": "blue",
+                "stroke-width": 2,
+                "fill": "red"
+            },
+            end: {
+
+                "stroke": "#FF6600",
+                "stroke-width": 2,
+                "fill": "#99CC33"
+            }
+        },
+
         shadow: {
             "dx": 0,
             "dy": 2,
-            "color": "yellow",
+            "color": "#CCCC00",
             "opacity": 9
         },
 
         no_shadow: {
             "dx": 0,
             "dy": 2,
-            "color": "white",
+            "color": "#FFFFFF",
             "opacity": 9
         },
 
@@ -53,26 +69,36 @@ define(function(require, exports, module) {
             x : 10,
             y : 20,
             normal : {
+                "stroke-linecap": "round",
+                "stroke-linejoin": "round",
                 "stroke": "green",
                 "fill": "none",
                 "stroke-width": 5
             },
             accessed : {
+                "stroke-linecap": "round",
+                "stroke-linejoin": "round",
                 "stroke": "yellow",
                 "fill": "none",
                 "stroke-width": 5
             },
             secured : {
+                "stroke-linecap": "round",
+                "stroke-linejoin": "round",
                 "stroke": "green",
                 "fill": "none",
                 "stroke-width": 5
             },
             failed : {
+                "stroke-linecap": "round",
+                "stroke-linejoin": "round",
                 "stroke": "red",
                 "fill": "none",
                 "stroke-width": 5
             },
             disabled : {
+                "stroke-linejoin": "round",
+                "stroke-linecap": "round",
                 "stroke": "gray",
                 "fill": "none",
                 "stroke-width": 5
@@ -90,6 +116,8 @@ define(function(require, exports, module) {
 
             },
             accessed : {
+                "stroke-linecap": "round",
+                "stroke-linejoin": "round",
                 "stroke": "yellow",
                 "fill": "yellow",
                 "fill-opacity": 0.6,
@@ -97,6 +125,8 @@ define(function(require, exports, module) {
 
             },
             secured : {
+                "stroke-linecap": "round",
+                "stroke-linejoin": "round",
                 "stroke": "blue",
                 "fill": "blue",
                 "fill-opacity": 0.6,
@@ -104,6 +134,8 @@ define(function(require, exports, module) {
 
             },
             failed : {
+                "stroke-linecap": "round",
+                "stroke-linejoin": "round",
                 "stroke": "red",
                 "fill": "red",
                 "fill-opacity": 0.6,
@@ -111,6 +143,8 @@ define(function(require, exports, module) {
 
             },
             disabled : {
+                "stroke-linecap": "round",
+                "stroke-linejoin": "round",
                 "stroke": "gray",
                 "fill": "gray",
                 "fill-opacity": 0.6,

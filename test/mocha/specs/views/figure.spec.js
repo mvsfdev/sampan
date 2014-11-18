@@ -6,7 +6,7 @@ define(function(require, exports, module) {
     var Backbone = require("backbone");
     var Module = require("modules/views/figure");
     var Figure = require("modules/models/figure");
-    var Point = require("modules/models/point");
+    var Polyline = require("modules/models/polyline");
     var Constants = require("modules/constants");
 
     // Test that the module exists.
@@ -16,10 +16,10 @@ define(function(require, exports, module) {
         });
         before(function() {
             var board = Svg(),
-                point = new Point({"x":30,"y": 50});
+                polyline = new Polyline({"x":30,"y": 50});
             this.navigate = sinon.stub();
             this.view = new Module({
-            model: point, board: board}, {
+            model: polyline, board: board}, {
                 router: { navigate: this.navigate } 
             });
         });
@@ -33,10 +33,20 @@ define(function(require, exports, module) {
 
         describe("render", function() {
             it("render on model change", sinon.test(function() {
-                this.stub(this.view, this.render, this.renderShape);
+
+                sinon.stub(this.view);
                 this.view.model.trigger("change");
-                //expect(this.view.render).to.have.been.calledOnce;
-                
+                expect(this.view.render).to.be.calledOnce;
+
+            }));
+            
+            it("test the render function can be excuted ", sinon.test(function() {
+                //sinon.stub(this.view);
+                //var renderShape = sinon.spy(this.view.renderShape);
+                //this.view.renderShape();
+                //expect(renderShape.called).to.be.true;
+                //expect(this.view.renderShape).to.be.called;
+
             }));
         });
         
