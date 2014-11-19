@@ -8,12 +8,8 @@ define(function(require, exports, module) {
     var Svg = require("svg");
 
     var Constants = require("modules/constants");
-    var Point = require("modules/models/point");
-    var Polyline = require("modules/models/polyline");
-    var Polygon = require("modules/models/polygon");
-    var Icon = require("modules/models/icon");
-    var FigureView = require("modules/views/figure");
-    var HotpointView = require("modules/views/hotpoint");
+    var Polyline = require("modules/models/newpolyline");
+    var PolylineView = require("modules/views/polylineview");
 
     // Defining the application router.
     module.exports = Backbone.Router.extend({
@@ -25,61 +21,11 @@ define(function(require, exports, module) {
             var board = new Svg(1920,1080);
             //var board = new Svg("100%","100%");
 
-            var shadow = board.filter(Svg.filter.shadow(Constants.shadow.dx,
-                                                        Constants.shadow.dy,
-                                                        Constants.shadow.color,
-                                                        Constants.shadow.opacity));
-            var no_shadow = board.filter(Svg.filter.shadow(Constants.no_shadow.dx,
-                                                           Constants.no_shadow.dy,
-                                                           Constants.no_shadow.color,
-                                                           Constants.no_shadow.opacity));
-            //var no_shadow = board.filter(Svg.filter.shadow(0,2,"white",9));
-
-            var point = new Point();
-            this.pointView = new FigureView({board : board, 
-                                             model : point, 
-                                             shadow : shadow, 
-                                             no_shadow : no_shadow});
-            this.pointView.model.setState("current");
-
             var polyline = new Polyline();
-            this.polylineView = new FigureView({board : board,
-                                                model : polyline, 
-                                                shadow : shadow, 
-                                                no_shadow : no_shadow});
-            this.polylineView.model.setState("secured");
-
-            var polygon = new Polygon();
-            this.polygonView = new FigureView({board : board, 
-                                               model : polygon, 
-                                               shadow : shadow, 
-                                               no_shadow : no_shadow});
-
-            var icon = new Icon();
-            this.iconView = new FigureView({board : board, 
-                                            model : icon, 
-                                            shadow : shadow, 
-                                            no_shadow : no_shadow});
-
-            var polyline_points = polyline.totalPoint();
-            this.hot = new Array(polyline_points.length/3);
-
-            for(var i = 0; i < polyline_points.length / 3; i++){
-                this.hot[i] = new HotpointView({board : board, 
-                                                         model : polyline,
-                                                         nth: i
-                                                        });
-            }            
-
-            var polygon_points = polygon.totalPoint();
-            this.hotgon = new Array(polygon_points.length/3);
-
-            for(i = 0; i < polygon_points.length / 3; i++){
-                this.hotgon[i] = new HotpointView({board : board, 
-                                                   model : polygon,
-                                                   nth: i
+            this.polylineView = new PolylineView({board : board,
+                                                   model : polyline
                                                   });
-            }            
+
             console.log("Welcome to your / route.");
         }
     });

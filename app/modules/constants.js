@@ -44,6 +44,8 @@ define(function(require, exports, module) {
         },
 
         figure: {
+            x : 100,
+            y : 100,
             scale_x : 0.8,
             scale_y : 0.8
         },

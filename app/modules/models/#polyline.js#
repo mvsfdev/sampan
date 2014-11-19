@@ -26,8 +26,7 @@ define(function(require, exports, module) {
                 "coords": [50,50,90,20,170,80],
                 "state": "accessed",
                 "path": " ",
-                "title": "polyline",
-                "pattern": "polyline"
+                "title": "polyline"
             });
             this.makeShape();
             this.setState();

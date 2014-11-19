@@ -17,15 +17,19 @@ define(function(require, exports, module) {
             this.$el= $(this.shape.node);
             this.render();
 
-            this.model.on("change", function() {this.render();}, this);
+            this.model.on("change:path", this.changePath, this);
+            this.model.on("change:highlight", this.changeShadow, this);
+            this.model.on("change:color", this.changeStroke, this);
+
             this.enableDrag();
             this.board = options.board;
             this.options = options;
-            this.model_n = options.model;
+            this.model = options.model;
         },
 
         events: {
-            "click": "setShadow"
+            //"click": "setShadow"
+            "click": "setStroke"
         },
 
         renderShape: function() {
@@ -42,15 +46,16 @@ define(function(require, exports, module) {
              }
         },
 
-        render: function() {
-            this.renderShape();
-            this.renderAttrs();
-        },
+        //render: function() {
+            //this.renderShape();
+            //this.renderAttrs();
+        //},
 
         // shadow Function
         setShadow: function(){
-            this.model_n.toggleHighlight();
+            this.model.toggleHighlight();
         },
+
         // Drag-n-Drop Function
         enableDrag : function() {
             this.shape.data("self",this);
@@ -72,6 +77,56 @@ define(function(require, exports, module) {
         
         dragup: function(){
             this.dx = this.dy = 0;
+        },
+
+        // for render
+        renderCommon: function() {
+            this.shape.attr(this.model.getAttrs());
+            this.shape.attr(this.model.getShape());
+        },
+        
+        //renderShape: function() {
+            //this.shape.attr(this.model.getShape());
+        //},
+        
+        renderStroke: function() {
+            this.shape.attr(this.model.getStroke());
+        },
+
+        renderShadow: function() {
+             if(this.model.get("highlight")){
+                 this.shape.attr("filter", this.options.shadow);
+             }else {
+                 this.shape.attr("filter", this.options.no_shadow);
+             }
+        },
+
+        renderCallback: 'renderCommon',
+        
+        render: function() {
+            this[this.renderCallback]();
+            return this;
+        },
+
+        // callback render
+        changeShape: function() {
+            this.renderCallback = 'renderShape';
+            this.render();
+        },
+
+        changeStroke: function() {
+            this.renderCallback = 'renderStroke';
+            this.render();
+        },
+        
+        changeShadow: function() {
+            this.renderCallback = 'renderShadow';
+            this.render();
+        },
+
+        // change stroke function
+        setStroke: function() {
+            this.model.toggleStroke();
         }
         
     });
