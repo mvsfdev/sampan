@@ -7,7 +7,7 @@ define(function(require, exports, module) {
     var Svg = require("svg");
     var app = require("app");
     var Constants = require("modules/constants");
-    var FigureView = require("modules/views/newfigure");
+    var FigureView = require("modules/views/figureview");
 
     var PolylineView = FigureView.extend({
         initialize: function(options) {
@@ -20,7 +20,6 @@ define(function(require, exports, module) {
         },
 
         getShape: function(board) {
-
             return board.paper.path();
         },
         

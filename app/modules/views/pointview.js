@@ -7,7 +7,7 @@ define(function(require, exports, module) {
     var Svg = require("svg");
     var app = require("app");
     var Constants = require("modules/constants");
-    var FigureView = require("modules/views/newfigure");
+    var FigureView = require("modules/views/figureview");
 
     var PointView = FigureView.extend({
         initialize: function(options) {
@@ -29,10 +29,11 @@ define(function(require, exports, module) {
             var off_x = dx || 0,
                 off_y = dy || 0;
                 
-            this.shape.attr({cx : this.x  + off_x,
-                             cy : this.x  + off_y,
-                             r : this.svg.r
-                            });
+            // this.shape.attr({cx : this.x + off_x,
+            //                  cy : this.y + off_y,
+            //                  r : this.svg.r
+            //                 });
+            this.shape.attr({r : this.svg.r});
         }
     });
     

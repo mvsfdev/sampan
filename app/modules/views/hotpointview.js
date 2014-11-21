@@ -7,12 +7,10 @@ define(function(require, exports, module) {
     var app = require("app");
     var Constants = require("modules/constants");
 
-    var NewHotpointView = Backbone.View.extend({
+    var HotpointView = Backbone.View.extend({
         initialize: function(options) {
-            
             this.board = options.board;
             this.shape = options.board.circle();
-            this.model = options.model;
             this.nth = options.nth || 0;
             this.figure = options.figure;
             var ary = this.figure.getNthXY(this.nth);
@@ -22,15 +20,19 @@ define(function(require, exports, module) {
             this.$el= $(this.shape.node);
             this.render();
             
-            this.model.on("change", this.render, this);
-            this.figure.on("change:this.coords", this.render,this);
+            this.listenTo(this.figure,"translate",this.translate);
+            this.listenTo(this.figure,"destroy",this.removed);
             this.enableDrag();
         },
 
-        renderShape: function() {
+        removed: function() {
+            this.remove();
+        },
+
+        renderShape: function(x,y) {
             this.shape.attr({
-                cx : this.x,
-                cy : this.y,
+                cx : x,
+                cy : y,
                 r : Constants.hotpoint.r
             });
         },
@@ -48,8 +50,13 @@ define(function(require, exports, module) {
             var ary = this.figure.getNthXY(this.nth);
             this.x = ary[0];
             this.y = ary[1];
-            this.renderShape();
+            this.renderShape(this.x,this.y);
             this.renderAttrs();
+            this.translate(this.figure.x,this.figure.y);
+        },
+        
+        translate: function(x,y) {
+            this.shape.transform("t" + x  + "," + y);
         },
 
         enableDrag : function() {
@@ -64,17 +71,22 @@ define(function(require, exports, module) {
         
         dragmove: function(dx,dy) {
             var self = this.data("self");
-            self.x += dx - (this.dx || 0);
-            self.y += dy - (this.dy || 0);
-
-            self.figure.setNthXY(self.nth,self.x,self.y);
-            self.renderShape();
             this.dx = dx;
             this.dy = dy;
-            console.log(self.x);
+            var x = self.x + dx,
+                y = self.y + dy;
+            self.renderShape(x,y);
+
+            self.figure.setNthXY(self.nth,x,y);
+
         },
         
         dragup: function() {
+            var self = this.data("self");
+            self.x += this.dx;
+            self.y += this.dy;
+            self.figure.setNthXY(self.nth,self.x,self.y);
+            self.figure.setModelCoords();
             this.dx = this.dy = 0;
         },
 
@@ -83,6 +95,6 @@ define(function(require, exports, module) {
         }
     });
 
-    module.exports = NewHotpointView;
+    module.exports = HotpointView;
 
 });

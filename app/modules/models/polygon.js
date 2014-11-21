@@ -14,114 +14,11 @@ define(function(require, exports, module) {
             this.constructor.__super__.initialize.apply(this, [options]);
             this.coords = new Coords();
             this.set({
-                "x": Constants.polygon.x,
-                "y": Constants.polygon.y,
                 "coords": [30,30,30,70,60,90],
-                "svg_attrs": Constants.polygon.normal,
-                "title": "polygon"
+                "title": "polygon",
+                "pattern": "polygon"
             });
-            this.makeShape();
-            this.setState();
-        },
-        
-        getElement: function(board) {
-            return board.paper.path();
-        },
-
-        getShape: function() {
-            this.makeShape();
-            return {
-                "path": this.get("path")
-            };
-        },
-        
-        getAttrs: function() {
-            this.updateAttrs();
-            return this.get("svg_attrs");
-        },
-        
-        makeShape : function(dx,dy) {
-            var off_x = dx || 0,
-                off_y = dy || 0;
-            var x = this.get("x") , 
-                y = this.get("y") ,
-                scale_x = this.get("scale_x"),
-                scale_y = this.get("scale_y"),
-                path;
-            var coordsAry = this.get("coords");
-            
-            off_x /= scale_x;
-            off_y /= scale_y;
-            
-            if (coordsAry.length > 0) {
-                path = "M" + x * scale_x + "," + y * scale_y; 
-                for ( var i = 0; i < coordsAry.length; i+=2){
-                    path += "L" + (coordsAry[i] + off_x) * scale_x + "," + 
-                        (coordsAry[i+1] + off_y) * scale_y  + " ";
-                    coordsAry[i] = coordsAry[i] + off_x;
-                    coordsAry[i+1] = coordsAry[i+1] + off_y;
-                }
-                path += "Z";
-            }
-            this.set("path", path);
-        },
-
-        // makeShape : function() {
-        //     var x = this.get("x") , 
-        //         y = this.get("y") ,
-        //         scale_x = this.get("scale_x"),
-        //         scale_y = this.get("scale_y"),
-        //         path;
-        //     var coordsAry = [{"x": 100, "y": 100}, 
-        //                      {"x": 400, "y": 100}, 
-        //                      {"x": 400, "y": 300},
-        //                      {"x": 100, "y": 300}];
-
-        //     if (coordsAry.length > 0) {
-        //         path = "M" + x * scale_x + "," + y * scale_y; 
-        //         for ( var i = 0; i < coordsAry.length; i++){
-        //             path += "L" + (coordsAry[i].x + x) * scale_x + "," + 
-        //                 (y + coordsAry[i].y) * scale_y  + " ";
-        //         }
-        //         path += "Z";
-        //     }
-        //     this.set("path", path);
-        // },
-
-        //event trigger this
-        setState: function(state) {
-            var st = state || "secured";
-            this.set("state", st);
-            this.updateAttrs();
-        },
-        
-        updateAttrs: function() {
-            var state = this.get("state");
-            switch (state) {
-            case 'accessed':
-                this.set("svg_attrs", Constants.polygon.accessed);
-                break;
-                
-            case 'secured':
-                this.set("svg_attrs", Constants.polygon.secured);
-                break;
-                
-            case 'failed' :
-                this.set("svg_attrs", Constants.polygon.failed);
-                break;
-                
-            case 'disabled':
-                this.set("svg_attrs", Constants.polygon.disabled);
-                break;
-            
-                default :
-                break;
-            }
-            
-            
         }
-        
-
     });
     module.exports = Polygon;
     

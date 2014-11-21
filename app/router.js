@@ -8,15 +8,16 @@ define(function(require, exports, module) {
     var Svg = require("svg");
 
     var Constants = require("modules/constants");
-    var Polyline = require("modules/models/newpolyline");
+    var Polyline = require("modules/models/polyline");
     var PolylineView = require("modules/views/polylineview");
-    var Polygon = require("modules/models/newpolygon");
+    var Polygon = require("modules/models/polygon");
     var PolygonView = require("modules/views/polygonview");
-    var Point = require("modules/models/newpoint");
+    var Point = require("modules/models/point");
     var PointView = require("modules/views/pointview");
-    var Icon = require("modules/models/newicon");
+    var Icon = require("modules/models/icon");
     var IconView = require("modules/views/iconview");
-    var HotpointView = require("modules/views/newhotpoint");
+    var HotpointView = require("modules/views/hotpointview");
+
     // Defining the application router.
     module.exports = Backbone.Router.extend({
         routes: {
@@ -51,7 +52,6 @@ define(function(require, exports, module) {
             this.hot = new Array(polyline_points.length/3);
             for(var i = 0; i < polyline_points.length / 3; i++){
                 this.hot[i] = new HotpointView({board : board, 
-                                                model : this.polyline,
                                                 figure: this.polylineView,
                                                 nth: i
                                                });
@@ -60,12 +60,11 @@ define(function(require, exports, module) {
             this.hot = new Array(polygon_points.length/3);
             for(var g = 0; g < polygon_points.length / 3; g++){
                 this.hot[g] = new HotpointView({board : board, 
-                                                model : this.polygon,
+                                                //model : this.polygon,
                                                 figure: this.polygonView,
                                                 nth: g
                                                });
             }            
-
 
             //var coords = [10,20,199,88,79,38];
              //this.polyline.setCoords(coords);

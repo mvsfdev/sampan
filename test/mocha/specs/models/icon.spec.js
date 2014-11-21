@@ -18,30 +18,11 @@ define(function(require, exports, module) {
         });
         describe("creation", function() {
             it("should has default values", function() {
-                expect(this.icon.get("scale_x")).to.be.ok;
-                expect(this.icon.get("scale_y")).to.be.ok;
-                expect(this.icon.get("id")).to.be.ok;
                 expect(this.icon.get("title")).to.be.ok;
-                expect(this.icon.get("highlight")).to.be.null;
-                expect(this.icon.get("svg_attrs")).to.be.a.object;
-                expect(this.icon.get("configure")).to.be.null;
-                expect(this.icon.get("background")).to.be.equal(Constants.icon.BOX);
-                expect(this.icon.get("foreground")).to.be.ok;
-
-                expect(this.icon.get("svg_attrs")).to.be.ok;
+                expect(this.icon.get("mod_type")).to.be.ok;
+                expect(this.icon.get("pattern")).to.be.ok;
 
             });
         });
-        describe("modification", function() {
-            it("should has default values", function() {
-                this.icon.setState("failed");
-                expect(this.icon.get("svg_attrs")).to.be.equal(Constants.icon.failed);
-                this.icon.getAttrs();
-                expect(this.icon.get("svg_attrs")).to.be.equal(Constants.icon.failed);
-                this.icon.setIconType("PM");
-                expect(this.icon.get("foreground")).to.be.equal(Constants.icon.PM);
-            });
-        });
-        
     });
 });
