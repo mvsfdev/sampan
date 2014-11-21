@@ -9,14 +9,14 @@ define(function(require, exports, module) {
     var Constants = require("modules/constants");
     var FigureView = require("modules/views/newfigure");
 
-    var PolylineView = FigureView.extend({
+    var PolygonView = FigureView.extend({
         initialize: function(options) {
             this.constructor.__super__.initialize.apply(this, [options]);
         },
         
         getSVG: function() {
 
-            return  Constants.polyline;
+            return  Constants.polygon;
         },
 
         getShape: function(board) {
@@ -25,9 +25,9 @@ define(function(require, exports, module) {
         },
         
         drawPath: function() {
-            this.shape.attr({path : this.calcPath()});
+            this.shape.attr({path : this.calcPath() + "Z"});
         }
     });
     
-    module.exports = PolylineView;
+    module.exports = PolygonView;
 });

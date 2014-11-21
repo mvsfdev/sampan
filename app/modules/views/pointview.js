@@ -9,25 +9,32 @@ define(function(require, exports, module) {
     var Constants = require("modules/constants");
     var FigureView = require("modules/views/newfigure");
 
-    var PolylineView = FigureView.extend({
+    var PointView = FigureView.extend({
         initialize: function(options) {
             this.constructor.__super__.initialize.apply(this, [options]);
         },
         
         getSVG: function() {
 
-            return  Constants.polyline;
+            return  Constants.point;
         },
 
         getShape: function(board) {
 
-            return board.paper.path();
+            return board.paper.circle();
         },
         
-        drawPath: function() {
-            this.shape.attr({path : this.calcPath()});
+        drawPath: function(dx,dy) {
+
+            var off_x = dx || 0,
+                off_y = dy || 0;
+                
+            this.shape.attr({cx : this.x  + off_x,
+                             cy : this.x  + off_y,
+                             r : this.svg.r
+                            });
         }
     });
     
-    module.exports = PolylineView;
+    module.exports = PointView;
 });

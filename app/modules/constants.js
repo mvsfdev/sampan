@@ -51,8 +51,9 @@ define(function(require, exports, module) {
         },
 
         point: {
-            current_alarm: {
-
+            r : 5,
+            normal: {
+                
                 "stroke": "yellow",
                 "stroke-width": 5,
                 "fill": "red"
@@ -115,6 +116,12 @@ define(function(require, exports, module) {
 
             },
             normal : {
+                "stroke-linecap": "round",
+                "stroke-linejoin": "round",
+                "stroke": "blue",
+                "fill": "blue",
+                "fill-opacity": 0.6,
+                "stroke-width": 5
 
             },
             accessed : {
